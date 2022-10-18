@@ -50,10 +50,8 @@ class Customer extends CI_Controller
         $customers = $this->db->query("
             select
                 c.*,
-                d.District_Name,
-                concat_ws(' - ', c.Customer_Code, c.Customer_Name, c.owner_name, c.Customer_Mobile) as display_name
+                concat_ws(' - ', c.Customer_Code, c.Customer_Name, c.Customer_Mobile) as display_name
             from tbl_customer c
-            left join tbl_district d on d.District_SlNo = c.area_ID
             where c.status = 'a'
             and c.Customer_Type != 'G'
             and (c.Customer_brunchid = ? or c.Customer_brunchid = 0)
@@ -229,7 +227,7 @@ class Customer extends CI_Controller
                 
                 $customerId = $duplicateCustomer->Customer_SlNo;
                 $customerObj->Customer_Code = $duplicateCustomer->Customer_Code;
-                $res_message = 'Customer updated successfully';
+                $res_message = 'Student updated successfully';
             } else {
                 $customer["AddBy"] = $this->session->userdata("FullName");
                 $customer["AddTime"] = date("Y-m-d H:i:s");
@@ -237,7 +235,7 @@ class Customer extends CI_Controller
                 $this->db->insert('tbl_customer', $customer);
                 $customerId = $this->db->insert_id();
 
-                $res_message = 'Customer added successfully';
+                $res_message = 'Student added successfully';
             }
             
 
@@ -322,7 +320,7 @@ class Customer extends CI_Controller
                 $this->db->query("update tbl_customer set image_name = ? where Customer_SlNo = ?", [$imageName, $customerId]);
             }
 
-            $res = ['success'=>true, 'message'=>'Customer updated successfully', 'customerCode'=>$this->mt->generateCustomerCode()];
+            $res = ['success'=>true, 'message'=>'Student updated successfully', 'customerCode'=>$this->mt->generateCustomerCode()];
         } catch (Exception $ex){
             $res = ['success'=>false, 'message'=>$ex->getMessage()];
         }
@@ -347,7 +345,7 @@ class Customer extends CI_Controller
 
             $this->db->query("update tbl_customer set status = 'd' where Customer_SlNo = ?", $data->customerId);
 
-            $res = ['success'=>true, 'message'=>'Customer deleted'];
+            $res = ['success'=>true, 'message'=>'Student deleted'];
         } catch (Exception $ex){
             $res = ['success'=>false, 'message'=>$ex->getMessage()];
         }

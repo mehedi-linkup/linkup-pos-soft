@@ -82,63 +82,56 @@
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Name:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.name" required>
+						<input type="text" class="form-control" v-model="customer.Customer_Name" required>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Father's Name:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.father_Name" required>
+						<input type="text" class="form-control" v-model="customer.Father_Name" required>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Mother's Name:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.mother_name" required>
+						<input type="text" class="form-control" v-model="customer.Mother_Name" required>
 					</div>
 				</div>
-
-				<!-- <div class="form-group clearfix">
-					<label class="control-label col-md-4">Owner Name:</label>
-					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.owner_name">
-					</div>
-				</div> -->
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Spouse Name:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.spouse_name">
+						<input type="text" class="form-control" v-model="customer.Spouse_Name">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Date of Birth:</label>
 					<div class="col-md-7">
-						<input type="date" class="form-control" v-model="customer.birth_date">
+						<input type="date" class="form-control" v-model="customer.Birth_Date">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Nationality:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.nationality">
+						<input type="text" class="form-control" v-model="customer.Nationality">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Religion:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.religion">
+						<input type="text" class="form-control" v-model="customer.Religion">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Reference/job:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.reference_job">
+						<input type="text" class="form-control" v-model="customer.Reference_Job">
 					</div>
 				</div>
 			</div>	
@@ -147,35 +140,35 @@
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Present Address:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.present_Address">
+						<input type="text" class="form-control" v-model="customer.Customer_Address">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Parmanent Address:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.parmanent_Address">
+						<input type="text" class="form-control" v-model="customer.Parmanent_Address">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Blood Group:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.blood_group">
+						<input type="text" class="form-control" v-model="customer.Blood_Group">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Contact Number:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.contact_number" required>
+						<input type="text" class="form-control" v-model="customer.Customer_Mobile" required>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Email Address:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.email" required>
+						<input type="text" class="form-control" v-model="customer.Customer_Email" required>
 					</div>
 				</div>
 
@@ -183,14 +176,14 @@
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Website(If Any):</label>
 					<div class="col-md-7">
-						<textarea type="text" class="form-control" v-model="customer.website"></textarea>
+						<textarea type="text" class="form-control" v-model="customer.Customer_Web"></textarea>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Other Detail:</label>
 					<div class="col-md-7">
-						<textarea type="text" class="form-control" v-model="customer.other_details"></textarea>
+						<textarea type="text" class="form-control" v-model="customer.Other_Details"></textarea>
 					</div>
 				</div>
 				
@@ -232,11 +225,11 @@
 								<td>{{ row.AddTime | dateOnly('DD-MM-YYYY') }}</td>
 								<td>{{ row.Customer_Code }}</td>
 								<td>{{ row.Customer_Name }}</td>
-								<td>{{ row.owner_name }}</td>
-								<td>{{ row.District_Name }}</td>
+								<td>{{ row.Father_Name }}</td>
+								<td>{{ row.Nationality }}</td>
 								<td>{{ row.Customer_Mobile }}</td>
-								<td>{{ row.Customer_Type }}</td>
-								<td>{{ row.Customer_Credit_Limit }}</td>
+								<td>{{ row.Customer_Address }}</td>
+								<td>{{ row.Blood_Group }}</td>
 								<td>
 									<?php if($this->session->userdata('accountType') != 'u'){?>
 									<button type="button" class="button edit" @click="editCustomer(row)">
@@ -271,31 +264,24 @@
 				customer: {
 					Customer_SlNo: 0,
 					Customer_Code: '<?php echo $customerCode;?>',
-					name: '',
-					father_name: '',
-					mother_name: '',
-					spouse_name: '',
-					birth_date: '',
-					nationality: '',
-					religion: '',
-					reference_job: '',
-					present_Address: '',
-					parmanent_Address: '',
-					blood_group: '',
-					contact_number: '',
-					email: '',
-					website: '',
-					birth_date: 'MM-YYYY-DD',
-					Customer_Type: 'retail',
-					Customer_Phone: '',
+					Customer_Name: '',
+					Father_Name: '',
+					Mother_Name: '',
+					Spouse_Name: '',
+					Birth_Date: '',
+					Nationality: '',
+					Religion: '',
+					Reference_Job: '',
+					Customer_Address: '',
+					Parmanent_Address: '',
+					Blood_Group: '',
 					Customer_Mobile: '',
 					Customer_Email: '',
-					Customer_OfficePhone: '',
-					Customer_Address: '',
-					owner_name: '',
-					area_ID: '',
+					Customer_Web: '',
+					Other_Details: '',
+					Birth_Date: 'MM-YYYY-DD',
+					Customer_Type: 'retail',
 					Customer_Credit_Limit: 0,
-					previous_due: 0
 				},
 				customers: [],
 				districts: [],
@@ -305,13 +291,13 @@
 				
 				columns: [
                     { label: 'Added Date', field: 'AddTime', align: 'center', filterable: false },
-                    { label: 'Customer Id', field: 'Customer_Code', align: 'center', filterable: false },
-                    { label: 'Customer Name', field: 'Customer_Name', align: 'center' },
-                    { label: 'Owner Name', field: 'owner_name', align: 'center' },
-                    { label: 'Area', field: 'District_Name', align: 'center' },
-                    { label: 'Contact Number', field: 'Customer_Mobile', align: 'center' },
-                    { label: 'Customer Type', field: 'Customer_Type', align: 'center' },
-                    { label: 'Credit Limit', field: 'Customer_Credit_Limit', align: 'center' },
+                    { label: 'Student Id', field: 'Customer_Code', align: 'center', filterable: false },
+                    { label: 'Student Name', field: 'Customer_Name', align: 'center' },
+                    { label: 'Father Name', field: 'Father_Name', align: 'center' },
+                    { label: 'Nationality', field: 'Nationality', align: 'center' },
+                    { label: 'Contact Num.', field: 'Customer_Mobile', align: 'center' },
+                    { label: 'Present Add.', field: 'Customer_Address', align: 'center' },
+                    { label: 'Blood Group', field: 'Blood_Group', align: 'center' },
                     { label: 'Action', align: 'center', filterable: false }
                 ],
                 page: 1,
@@ -324,16 +310,16 @@
 				return moment(datetime).format(format);
 			}
 		},
-		created(){
-			this.getDistricts();
+		created() {
+			// this.getDistricts();
 			this.getCustomers();
 		},
 		methods: {
-			getDistricts(){
-				axios.get('/get_districts').then(res => {
-					this.districts = res.data;
-				})
-			},
+			// getDistricts(){
+			// 	axios.get('/get_districts').then(res => {
+			// 		this.districts = res.data;
+			// 	})
+			// },
 			getCustomers(){
 				axios.get('/get_customers').then(res => {
 					this.customers = res.data;
@@ -349,13 +335,6 @@
 				}
 			},
 			saveCustomer(){
-				if(this.selectedDistrict == null){
-					alert('Select area');
-					return;
-				}
-
-				this.customer.area_ID = this.selectedDistrict.District_SlNo;
-				
 				let url = '/add_customer';
 				if(this.customer.Customer_SlNo != 0){
 					url = '/update_customer';
