@@ -41,6 +41,7 @@ class Page extends CI_Controller {
 
     public function getCategories(){
         $categories = $this->db->query("select * from tbl_productcategory where status = 'a'")->result();
+        // $categories = $this->db->query("select * from tbl_productcategory")->result();
         echo json_encode($categories);
     }
 
@@ -49,7 +50,7 @@ class Page extends CI_Controller {
         if(!$access){
             redirect(base_url());
         }
-        $data['title'] = "Add Category";
+        $data['title'] = "Add Course";
         $data['content'] = $this->load->view('Administrator/add_prodcategory', $data, TRUE);
         $this->load->view('Administrator/index', $data);
     }
@@ -62,20 +63,23 @@ class Page extends CI_Controller {
         }
         else{
             $data = array(
-                "ProductCategory_Name"              => $this->input->post('catname', TRUE),
-                "ProductCategory_Description"       =>$this->input->post('catdescrip', TRUE),
-                "status"       						=>'a',
-                "AddBy"                  			=>$this->session->userdata("FullName"),
-                "AddTime"                           =>date("Y-m-d H:i:s"),
-                "category_branchid"                 =>$this->brunch
-                );
+                "ProductCategory_Name"        => $this->input->post('catname', TRUE),
+                "ProductCategory_Description" => $this->input->post('catdescrip', TRUE),
+                "Course_Duration"             => $this->input->post('course_duration', TRUE),
+                "Course_Fee"                  => $this->input->post('course_fee', TRUE),
+                "Course_Status"               => $this->input->post('course_status', TRUE),
+                "status"                      => 'a',
+                "AddBy"                       => $this->session->userdata("FullName"),
+                "AddTime"                     => date("Y-m-d H:i:s"),
+                "category_branchid"           => $this->brunch
+            );
             $this->mt->save_data('tbl_productcategory',$data);
 			$success = 'Save Success';
-            echo json_encode($success);    
+            echo json_encode($success);
         }
     }
     public function catedit($id)  {
-        $data['title'] = "Edit Category";
+        $data['title'] = "Edit Course";
         //$fld = 'ProductCategory_SlNo';
         $data['selected'] = $this->Billing_model->select_by_id('tbl_productcategory', $id,'ProductCategory_SlNo');
         $data['content'] = $this->load->view('Administrator/edit/category_edit', $data, TRUE);
@@ -92,10 +96,13 @@ class Page extends CI_Controller {
 
             $fld = 'ProductCategory_SlNo';
             $data = array(
-                "ProductCategory_Name"              =>$this->input->post('catname', TRUE),
-                "ProductCategory_Description"       =>$this->input->post('catdescrip', TRUE),
-                "UpdateBy"                          =>$this->session->userdata("FullName"),
-                "UpdateTime"                        =>date("Y-m-d H:i:s")
+                "ProductCategory_Name"        => $this->input->post('catname', TRUE),
+                "ProductCategory_Description" => $this->input->post('catdescrip', TRUE),
+                "Course_Duration"             => $this->input->post('course_duration', TRUE),
+                "Course_Fee"                  => $this->input->post('course_fee', TRUE),
+                "Course_Status"               => $this->input->post('course_status', TRUE),
+                "UpdateBy"                    => $this->session->userdata("FullName"),
+                "UpdateTime"                  => date("Y-m-d H:i:s")
             );
             if($this->mt->update_data("tbl_productcategory", $data, $id,$fld)){
 				$msg = true;

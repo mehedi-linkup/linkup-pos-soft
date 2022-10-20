@@ -271,8 +271,7 @@
 					<div id="loader" hidden style="position: fixed; z-index: 1000; margin: auto; height: 100%; width: 100%; background:rgba(255, 255, 255, 0.72);;">
 						<img src="<?php echo base_url(); ?>assets/loader.gif" style="top: 30%; left: 50%; opacity: 1; position: fixed;">
 					</div>
-					<?php echo $content; ?>
-					
+					<?php echo $content;?>
 					
 					</div><!-- /.page-content -->
 					<div class="row" style="display:none;">

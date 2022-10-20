@@ -51,16 +51,16 @@
 <div id="products">
 		<form @submit.prevent="saveProduct">
 		<div class="row" style="margin-top: 10px;margin-bottom:15px;border-bottom: 1px solid #ccc;padding-bottom: 15px;">
-			<div class="col-md-6">
+			<div class="col-md-6 col-md-offset-3">
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Product Id:</label>
+					<label class="control-label col-md-4">Batch Id:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="product.Product_Code">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Category:</label>
+					<label class="control-label col-md-4">Course:</label>
 					<div class="col-md-7">
 						<select class="form-control" v-if="categories.length == 0"></select>
 						<v-select v-bind:options="categories" v-model="selectedCategory" label="ProductCategory_Name" v-if="categories.length > 0"></v-select>
@@ -68,23 +68,30 @@
 					<div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="/category" target="_blank" class="add-button"><i class="fa fa-plus"></i></a></div>
 				</div>
 
-				<div class="form-group clearfix" style="display:none;">
+				<div class="form-group clearfix">
+					<label class="control-label col-md-4">Batch Name</label>
+					<div class="col-md-7">
+						<input type="text" class="form-control" v-model="product.Batch_Name" required>
+					</div>
+				</div>
+
+				<!-- <div class="form-group clearfix" style="display:none;">
 					<label class="control-label col-md-4">Brand:</label>
 					<div class="col-md-7">
 						<select class="form-control" v-if="brands.length == 0"></select>
 						<v-select v-bind:options="brands" v-model="selectedBrand" label="brand_name" v-if="brands.length > 0"></v-select>
 					</div>
 					<div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="" class="add-button"><i class="fa fa-plus"></i></a></div>
-				</div>
+				</div> -->
 
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Product Name:</label>
+				<!-- <div class="form-group clearfix">
+					<label class="control-label col-md-4">Batch Name:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="product.Product_Name" required>
 					</div>
-				</div>
+				</div> -->
 
-				<div class="form-group clearfix">
+				<!-- <div class="form-group clearfix">
 					<label class="control-label col-md-4">Unit:</label>
 					<div class="col-md-7">
 						<select class="form-control" v-if="units.length == 0"></select>
@@ -97,10 +104,33 @@
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="product.vat">
 					</div>
+				</div> -->
+
+				<div class="form-group clearfix">
+					<label class="control-label col-md-4">Start Date</label>
+					<div class="col-md-7">
+						<input type="date" class="form-control" v-model="product.Start_Date">
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<label class="control-label col-md-4">End Date</label>
+					<div class="col-md-7">
+						<input type="date" class="form-control" v-model="product.End_Date">
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<label class="control-label col-md-4">Is Active:</label>
+					<div class="col-md-7">
+						<input type="checkbox" v-model="product.is_active" @change="changeIsActive">
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<div class="col-md-7 col-md-offset-4">
+						<input type="submit" class="btn btn-success btn-sm" value="Save">
+					</div>
 				</div>
 			</div>	
-
-			<div class="col-md-6">
+			<!-- <div class="col-md-6">
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Re-order level:</label>
 					<div class="col-md-7">
@@ -140,7 +170,7 @@
 						<input type="submit" class="btn btn-success btn-sm" value="Save">
 					</div>
 				</div>
-			</div>	
+			</div>	 -->
 		</div>
 		</form>
 
@@ -156,15 +186,12 @@
 					<datatable :columns="columns" :data="products" :filter-by="filter">
 						<template scope="{ row }">
 							<tr>
-								<td>{{ row.Product_Code }}</td>
-								<td>{{ row.Product_Name }}</td>
+								<td>{{ row.Batch_Code }}</td>
+								<td>{{ row.Batch_Name }}</td>
 								<td>{{ row.ProductCategory_Name }}</td>
-								<td>{{ row.Product_Purchase_Rate }}</td>
-								<td>{{ row.Product_SellingPrice }}</td>
-								<td>{{ row.Product_WholesaleRate }}</td>
-								<td>{{ row.vat }}</td>
-								<td>{{ row.is_service }}</td>
-								<td>{{ row.Unit_Name }}</td>
+								<td>{{ row.is_active }}</td>
+								<td>{{ row.Start_Date }}</td>
+								<td>{{ row.End_Date }}</td>
 								<td>
 									<?php if($this->session->userdata('accountType') != 'u'){?>
 									<button type="button" class="button edit" @click="editProduct(row)">
@@ -174,9 +201,9 @@
 										<i class="fa fa-trash"></i>
 									</button>
 									<?php }?>
-									<button type="button" class="button" @click="window.location = `/Administrator/products/barcodeGenerate/${row.Product_SlNo}`">
+									<!-- <button type="button" class="button" @click="window.location = `/Administrator/products/barcodeGenerate/${row.Product_SlNo}`">
 										<i class="fa fa-barcode"></i>
-									</button>
+									</button> -->
 								</td>
 							</tr>
 						</template>
@@ -203,36 +230,28 @@
 			return {
 				product: {
 					Product_SlNo: '',
-					Product_Code: "<?php echo $productCode;?>",
-					Product_Name: '',
+					Batch_Code: "<?php echo $productCode;?>",
+					Batch_Name: '',
 					ProductCategory_ID: '',
-					brand: '',
-					Product_ReOrederLevel: '',
-					Product_Purchase_Rate: '',
-					Product_SellingPrice: '',
-					Product_WholesaleRate: 0,
-					Unit_ID: '',
-					vat: 0,
-					is_service: false
+					is_active: false,
+					Start_Date: '',
+					End_Date: '',
 				},
 				products: [],
 				categories: [],
 				selectedCategory: null,
-				brands: [],
-				selectedBrand: null,
-				units: [],
-				selectedUnit: null,
+				// brands: [],
+				// selectedBrand: null,
+				// units: [],
+				// selectedUnit: null,
 
 				columns: [
-                    { label: 'Product Id', field: 'Product_Code', align: 'center', filterable: false },
-                    { label: 'Product Name', field: 'Product_Name', align: 'center' },
-                    { label: 'Category', field: 'ProductCategory_Name', align: 'center' },
-                    { label: 'Purchase Price', field: 'Product_Purchase_Rate', align: 'center' },
-                    { label: 'Sales Price', field: 'Product_SellingPrice', align: 'center' },
-                    { label: 'Wholesale Price', field: 'Product_WholesaleRate', align: 'center' },
-                    { label: 'VAT', field: 'vat', align: 'center' },
-                    { label: 'Is Service', field: 'is_service', align: 'center' },
-                    { label: 'Unit', field: 'Unit_Name', align: 'center' },
+                    { label: 'Batch Id', field: 'Product_Code', align: 'center', filterable: false },
+                    { label: 'Batch Name', field: 'Product_Name', align: 'center' },
+                    { label: 'Course', field: 'ProductCategory_Name', align: 'center' },
+					{ label: 'Start Date', field: 'Start_Date', align: 'center' },
+					{ label: 'End Date', field: 'End_Date', align: 'center' },
+                    { label: 'Status', field: 'is_active', align: 'center' },
                     { label: 'Action', align: 'center', filterable: false }
                 ],
                 page: 1,
@@ -242,14 +261,14 @@
 		},
 		created(){
 			this.getCategories();
-			this.getBrands();
-			this.getUnits();
+			// this.getBrands();
+			// this.getUnits();
 			this.getProducts();
 		},
 		methods:{
-			changeIsService(){
-				if (this.product.is_service) {
-					this.product.Product_Purchase_Rate = 0;
+			changeIsActive(){
+				if (this.product.is_active) {
+					this.product.is_active = true;
 				}
 			},
 			getCategories(){
@@ -257,16 +276,16 @@
 					this.categories = res.data;
 				})
 			},
-			getBrands(){
-				axios.get('/get_brands').then(res => {
-					this.brands = res.data;
-				})
-			},
-			getUnits(){
-				axios.get('/get_units').then(res => {
-					this.units = res.data;
-				})
-			},
+			// getBrands(){
+			// 	axios.get('/get_brands').then(res => {
+			// 		this.brands = res.data;
+			// 	})
+			// },
+			// getUnits(){
+			// 	axios.get('/get_units').then(res => {
+			// 		this.units = res.data;
+			// 	})
+			// },
 			getProducts(){
 				axios.get('/get_products').then(res => {
 					this.products = res.data;
@@ -277,19 +296,20 @@
 					alert('Select category');
 					return;
 				}
-				if(this.selectedUnit == null){
-					alert('Select unit');
-					return;
-				}
-				if(this.selectedBrand != null){
-					this.product.brand = this.selectedBrand.brand_SiNo;
-				}
+				// if(this.selectedUnit == null){
+				// 	alert('Select unit');
+				// 	return;
+				// }
+				// if(this.selectedBrand != null){
+				// 	this.product.brand = this.selectedBrand.brand_SiNo;
+				// }
 
 				this.product.ProductCategory_ID = this.selectedCategory.ProductCategory_SlNo;
-				this.product.Unit_ID = this.selectedUnit.Unit_SlNo;
+
+				// this.product.Unit_ID = this.selectedUnit.Unit_SlNo;
 
 				let url = '/add_product';
-				if(this.product.Product_SlNo != 0){
+				if(this.product.Product_SlNo != 0) {
 					url = '/update_product';
 				}
 				axios.post(url, this.product)
@@ -309,7 +329,7 @@
 				keys.forEach(key => {
 					this.product[key] = product[key];
 				})
-
+				
 				this.product.is_service = product.is_service == 'true' ? true : false;
 
 				this.selectedCategory = {

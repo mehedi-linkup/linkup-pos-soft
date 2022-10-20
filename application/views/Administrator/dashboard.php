@@ -271,13 +271,13 @@ if ($module == 'dashboard' or $module == '') { ?>
 									<i class="menu-icon fa fa-user-plus"></i>
 								</div>
 								<div class="textModule">
-									Customer Entry
+									Student Entry
 								</div>
 							</a>
 						</div>
 					</div>
 				<?php endif; ?>
-				<?php if (array_search("supplier", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+				<!-- <?php if (array_search("supplier", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<div class="col-md-2 col-xs-6 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>supplier">
@@ -290,7 +290,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 							</a>
 						</div>
 					</div>
-				<?php endif; ?>
+				<?php endif; ?> -->
 				<!-- <?php if (array_search("brunch", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<div class="col-md-2 col-xs-6 ">
 						<div class="col-md-12 section20">
@@ -313,13 +313,13 @@ if ($module == 'dashboard' or $module == '') { ?>
 									<i class="menu-icon fa fa-list"></i>
 								</div>
 								<div class="textModule">
-									Category entry
+									Course Entry
 								</div>
 							</a>
 						</div>
 					</div>
 				<?php endif; ?>
-				<?php if (array_search("unit", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+				<!-- <?php if (array_search("unit", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<div class="col-md-2 col-xs-6 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>unit">
@@ -332,8 +332,8 @@ if ($module == 'dashboard' or $module == '') { ?>
 							</a>
 						</div>
 					</div>
-				<?php endif; ?>
-				<?php if (array_search("area", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+				<?php endif; ?> -->
+				<!-- <?php if (array_search("area", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<div class="col-md-2 col-xs-6 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>area">
@@ -341,13 +341,12 @@ if ($module == 'dashboard' or $module == '') { ?>
 									<i class="menu-icon fa fa-globe"></i>
 								</div>
 								<div class="textModule">
-									Add Area
+									Add Course
 								</div>
 							</a>
 						</div>
 					</div>
-				<?php endif; ?>
-				
+				<?php endif; ?> -->
 				
 				<?php if($this->session->userdata('BRANCHid') == 1 && (isset($CheckSuperAdmin) || isset($CheckAdmin))) : ?>
 					<div class="col-md-2 col-xs-6 ">
@@ -389,10 +388,8 @@ if ($module == 'dashboard' or $module == '') { ?>
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<div class="col-md-12 header">
-
 					<h3>Sales Module </h3>
 				</div>
-
 				<?php if (array_search("sales/product", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<div class="col-md-2 col-xs-6 ">
 						<div class="col-md-12 section20">

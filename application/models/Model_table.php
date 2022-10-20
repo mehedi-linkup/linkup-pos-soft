@@ -81,13 +81,13 @@ class Model_Table extends CI_Model{
     }
 
     public function generateProductCode(){
-        $productCode = "P00001";
+        $productCode = "B00001";
         
         $lastProduct = $this->db->query("select * from tbl_product order by Product_SlNo desc limit 1");
         if($lastProduct->num_rows() != 0){
             $newProductId = $lastProduct->row()->Product_SlNo + 1;
             $zeros = array('0', '00', '000', '0000');
-            $productCode = 'P' . (strlen($newProductId) > count($zeros) ? $newProductId : $zeros[count($zeros) - strlen($newProductId)] . $newProductId);
+            $productCode = 'B' . (strlen($newProductId) > count($zeros) ? $newProductId : $zeros[count($zeros) - strlen($newProductId)] . $newProductId);
         }
 
         return $productCode;

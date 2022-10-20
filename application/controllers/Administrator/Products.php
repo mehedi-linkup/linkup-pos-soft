@@ -48,8 +48,7 @@ class Products extends CI_Controller {
     public function addProduct() {
         $res = ['success'=>false, 'message'=>''];
         try{
-            $productObj = json_decode($this->input->raw_input_stream);
-
+            $productObj = json_decode($this->input->raw_input_stream);            
             $productNameCount = $this->db->query("select * from tbl_product where Product_Name = ?", $productObj->Product_Name)->num_rows();
             if($productNameCount > 0){
                 $res = ['success'=>false, 'message'=>'Product name already exists'];
@@ -58,6 +57,7 @@ class Products extends CI_Controller {
             }
 
             $productCodeCount = $this->db->query("select * from tbl_product where Product_Code = ?", $productObj->Product_Code)->num_rows();
+            
             if($productCodeCount > 0){
                 $res = ['success'=>false, 'message'=>'Product code already exists'];
                 echo json_encode($res);
@@ -65,7 +65,7 @@ class Products extends CI_Controller {
             }
 
             $product = (array)$productObj;
-            $product['is_service'] = $productObj->is_service == true ? 'true' : 'false';
+            // $product['is_service'] = $productObj->is_service == true ? 'true' : 'false';
             $product['status'] = 'a';
             $product['AddBy'] = $this->session->userdata("FullName");
             $product['AddTime'] = date('Y-m-d H:i:s');

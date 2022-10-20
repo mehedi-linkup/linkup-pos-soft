@@ -133,8 +133,8 @@ if ($module == 'dashboard' or $module == '') {
 		) : ?>
 			<li class="">
 				<a href="<?php echo base_url(); ?>" class="dropdown-toggle">
-					<i class="menu-icon fa fa-product-hunt"></i>
-					<span class="menu-text"> Product Info </span>
+					<i class="menu-icon fa fa-users"></i>
+					<span class="menu-text"> Batch Info </span>
 
 					<b class="arrow fa fa-angle-down"></b>
 				</a>
@@ -147,7 +147,7 @@ if ($module == 'dashboard' or $module == '') {
 						<li class="">
 							<a href="<?php echo base_url(); ?>product">
 								<i class="menu-icon fa fa-caret-right"></i>
-								Product Entry
+								Batch Entry
 							</a>
 
 							<b class="arrow"></b>
@@ -158,13 +158,13 @@ if ($module == 'dashboard' or $module == '') {
 						<li class="">
 							<a href="<?php echo base_url(); ?>productlist" target="_blank">
 								<i class="menu-icon fa fa-caret-right"></i>
-								Product List
+								Batch List
 							</a>
 							<b class="arrow"></b>
 						</li>
 					<?php endif; ?>
 
-					<?php if (array_search("product_ledger", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+					<!-- <?php if (array_search("product_ledger", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 						<li class="">
 							<a href="<?php echo base_url(); ?>product_ledger">
 								<i class="menu-icon fa fa-caret-right"></i>
@@ -172,7 +172,7 @@ if ($module == 'dashboard' or $module == '') {
 							</a>
 							<b class="arrow"></b>
 						</li>
-					<?php endif; ?>
+					<?php endif; ?> -->
 				</ul>
 			</li>
 		<?php endif; ?>
@@ -290,13 +290,13 @@ if ($module == 'dashboard' or $module == '') {
 					<li class="">
 						<a href="<?php echo base_url(); ?>customer">
 							<i class="menu-icon fa fa-caret-right"></i>
-							Customer Entry
+							Student Entry
 						</a>
 						<b class="arrow"></b>
 					</li>
 				<?php endif; ?>
 
-				<?php if (array_search("supplier", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+				<!-- <?php if (array_search("supplier", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<li class="">
 						<a href="<?php echo base_url(); ?>supplier">
 							<i class="menu-icon fa fa-caret-right"></i>
@@ -304,7 +304,7 @@ if ($module == 'dashboard' or $module == '') {
 						</a>
 						<b class="arrow"></b>
 					</li>
-				<?php endif; ?>
+				<?php endif; ?> -->
 
 				<!-- <?php if (array_search("brunch", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<li class="">
@@ -320,13 +320,13 @@ if ($module == 'dashboard' or $module == '') {
 					<li class="">
 						<a href="<?php echo base_url(); ?>category">
 							<i class="menu-icon fa fa-caret-right"></i>
-							Category entry
+							Course Entry
 						</a>
 						<b class="arrow"></b>
 					</li>
 				<?php endif; ?>
 
-				<?php if (array_search("unit", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+				<!-- <?php if (array_search("unit", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<li class="">
 						<a href="<?php echo base_url(); ?>unit">
 							<i class="menu-icon fa fa-caret-right"></i>
@@ -334,9 +334,8 @@ if ($module == 'dashboard' or $module == '') {
 						</a>
 						<b class="arrow"></b>
 					</li>
-				<?php endif; ?>
-
-				<?php if (array_search("area", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+				<?php endif; ?> -->
+			<!--<?php if (array_search("area", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<li class="">
 						<a href="<?php echo base_url(); ?>area">
 							<i class="menu-icon fa fa-caret-right"></i>
@@ -344,7 +343,7 @@ if ($module == 'dashboard' or $module == '') {
 						</a>
 						<b class="arrow"></b>
 					</li>
-				<?php endif; ?>
+				<?php endif; ?> -->
 			</ul>
 		</li>
 		<?php endif;?>
@@ -368,7 +367,7 @@ if ($module == 'dashboard' or $module == '') {
 			</li>
 		<?php endif; ?>
 
-		<?php if (isset($CheckSuperAdmin) && $this->session->userdata('BRANCHid') == 1) : ?>
+		<?php if(isset($CheckSuperAdmin) && $this->session->userdata('BRANCHid') == 1) : ?>
 			<li class="">
 				<a href="<?php echo base_url(); ?>user_activity">
 					<i class="menu-icon fa fa-list"></i>

@@ -4,10 +4,10 @@
 	<div class="form-horizontal">
 		
 		<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Area Name  </label>
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Course Assignment  </label>
 			<label class="col-sm-1 control-label no-padding-right">:</label>
 			<div class="col-sm-8">
-				<input type="text" id="district" name="district" placeholder="Area Name" value="<?php echo set_value('district'); ?>" class="col-xs-10 col-sm-4" />
+				<input type="text" id="district" name="district" placeholder="Course Name" value="<?php echo set_value('district'); ?>" class="col-xs-10 col-sm-4" />
 				<span id="msg"></span>
 				<?php echo form_error('district'); ?>
 				<span style="color:red;font-size:15px;">
@@ -38,7 +38,7 @@
 			<div class="pull-right tableTools-container"></div>
 		</div>
 		<div class="table-header">
-			Area Information
+			Course List
 		</div>
 
 		<!-- div.table-responsive -->
@@ -55,7 +55,7 @@
 							</label>
 						</th>
 						<th>SL No</th>
-						<th>Area Name</th>
+						<th>Course Name</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -121,7 +121,7 @@
             data: inputdata,
             success:function(data){   
 			if(data=="false"){
-				 alert("This area allready exists");
+				 alert("This area already exists");
             }else{
 				alert("Save Success");
 				location.reload();
@@ -142,7 +142,7 @@
             type: "POST",
             url: urldata,
             data: inputdata,
-            success:function(data){
+            success:function(data) {
                 //$("#saveResult").html(data);
                 alert("Delete Success");
                 window.location.href='<?php echo base_url(); ?>Administrator/page/area';
