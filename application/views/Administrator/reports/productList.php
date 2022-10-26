@@ -14,10 +14,10 @@
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Product Id</th>
-                                <th>Product Name</th>
-                                <th>Category</th>
-                                <th>Sale Price</th>
+                                <th>Batch Id</th>
+                                <th>Batch Name</th>
+                                <th>Course</th>
+                                <th>Course Fee</th>
                             </tr>
                         </thead>
                         <tbody>

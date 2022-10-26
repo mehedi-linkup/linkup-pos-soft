@@ -67,6 +67,16 @@
 	#customerImage{
 		height: 100%;
 	}
+	.invalid {
+  		border: 2px solid red;
+	}
+	.valid {
+		border: 2px solid green;
+	}
+	.invalid-warning {
+		margin: 10px auto;
+		color: red;
+	}
 </style>
 <div id="customers">
 		<form @submit.prevent="saveCustomer">
@@ -161,14 +171,17 @@
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Contact Number:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.Customer_Mobile" required>
+						<input type="text" class="form-control" :class="{valid: isValidPhoneNumber, invalid: !isValidPhoneNumber}" v-model="customer.Customer_Mobile" @keyup="validatePhoneNumber" required>
+						<div class="invalid-warning" v-if="!isValidPhoneNumber">
+							Invalid phone number!
+						</div>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Email Address:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.Customer_Email" required>
+						<input type="email" class="form-control" v-model="customer.Customer_Email" required>
 					</div>
 				</div>
 
@@ -279,10 +292,11 @@
 					Customer_Email: '',
 					Customer_Web: '',
 					Other_Details: '',
-					Birth_Date: 'MM-YYYY-DD',
+					Birth_Date: moment().format('YYYY-MM-DD'),
 					Customer_Type: 'retail',
 					Customer_Credit_Limit: 0,
 				},
+				isValidPhoneNumber: true,
 				customers: [],
 				districts: [],
 				selectedDistrict: null,
@@ -320,6 +334,14 @@
 			// 		this.districts = res.data;
 			// 	})
 			// },
+			validatePhoneNumber() {
+				const validationRegex = /^01[13-9][\d]{8}$/;
+				if (this.customer.Customer_Mobile.match(validationRegex)) {
+					this.isValidPhoneNumber = true;
+				} else {
+					this.isValidPhoneNumber = false;
+				}
+			},
 			getCustomers(){
 				axios.get('/get_customers').then(res => {
 					this.customers = res.data;
@@ -335,6 +357,11 @@
 				}
 			},
 			saveCustomer(){
+
+				if(this.isValidPhoneNumber == false) {
+					alert("Phone number isn't valid!");
+					return;
+				}
 				let url = '/add_customer';
 				if(this.customer.Customer_SlNo != 0){
 					url = '/update_customer';
@@ -394,7 +421,11 @@
 				keys = keys.filter(key => key != "Customer_Type");
 				keys.forEach(key => {
 					if(typeof(this.customer[key]) == 'string'){
-						this.customer[key] = '';
+						if(this.customer[key] == this.customer['Birth_Date']) {
+							this.customer.Birth_Date = moment().format('YYYY-MM-DD')
+						} else {
+							this.customer[key] = '';
+						}
 					} else if(typeof(this.customer[key]) == 'number'){
 						this.customer[key] = 0;
 					}

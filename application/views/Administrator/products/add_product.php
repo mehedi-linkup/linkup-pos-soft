@@ -49,171 +49,169 @@
 	}
 </style>
 <div id="products">
-		<form @submit.prevent="saveProduct">
-		<div class="row" style="margin-top: 10px;margin-bottom:15px;border-bottom: 1px solid #ccc;padding-bottom: 15px;">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Batch Id:</label>
-					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="product.Product_Code">
-					</div>
-				</div>
-
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Course:</label>
-					<div class="col-md-7">
-						<select class="form-control" v-if="categories.length == 0"></select>
-						<v-select v-bind:options="categories" v-model="selectedCategory" label="ProductCategory_Name" v-if="categories.length > 0"></v-select>
-					</div>
-					<div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="/category" target="_blank" class="add-button"><i class="fa fa-plus"></i></a></div>
-				</div>
-
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Batch Name</label>
-					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="product.Batch_Name" required>
-					</div>
-				</div>
-
-				<!-- <div class="form-group clearfix" style="display:none;">
-					<label class="control-label col-md-4">Brand:</label>
-					<div class="col-md-7">
-						<select class="form-control" v-if="brands.length == 0"></select>
-						<v-select v-bind:options="brands" v-model="selectedBrand" label="brand_name" v-if="brands.length > 0"></v-select>
-					</div>
-					<div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="" class="add-button"><i class="fa fa-plus"></i></a></div>
-				</div> -->
-
-				<!-- <div class="form-group clearfix">
-					<label class="control-label col-md-4">Batch Name:</label>
-					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="product.Product_Name" required>
-					</div>
-				</div> -->
-
-				<!-- <div class="form-group clearfix">
-					<label class="control-label col-md-4">Unit:</label>
-					<div class="col-md-7">
-						<select class="form-control" v-if="units.length == 0"></select>
-						<v-select v-bind:options="units" v-model="selectedUnit" label="Unit_Name" v-if="units.length > 0"></v-select>
-					</div>
-					<div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="/unit" target="_blank" class="add-button"><i class="fa fa-plus"></i></a></div>
-				</div>
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">VAT:</label>
-					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="product.vat">
-					</div>
-				</div> -->
-
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Start Date</label>
-					<div class="col-md-7">
-						<input type="date" class="form-control" v-model="product.Start_Date">
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">End Date</label>
-					<div class="col-md-7">
-						<input type="date" class="form-control" v-model="product.End_Date">
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Is Active:</label>
-					<div class="col-md-7">
-						<input type="checkbox" v-model="product.is_active" @change="changeIsActive">
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<div class="col-md-7 col-md-offset-4">
-						<input type="submit" class="btn btn-success btn-sm" value="Save">
-					</div>
-				</div>
-			</div>	
-			<!-- <div class="col-md-6">
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Re-order level:</label>
-					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="product.Product_ReOrederLevel" required>
-					</div>
-				</div>
-
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Purchase Rate:</label>
-					<div class="col-md-7">
-						<input type="text" id="purchase_rate" class="form-control" v-model="product.Product_Purchase_Rate" required v-bind:disabled="product.is_service ? true : false">
-					</div>
-				</div>
-
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Sales Rate:</label>
-					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="product.Product_SellingPrice" required>
-					</div>
-				</div>
-
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Wholesale Rate:</label>
-					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="product.Product_WholesaleRate" required>
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Is Service:</label>
-					<div class="col-md-7">
-						<input type="checkbox" v-model="product.is_service" @change="changeIsService">
-					</div>
-				</div>
-				
-				<div class="form-group clearfix">
-					<div class="col-md-7 col-md-offset-4">
-						<input type="submit" class="btn btn-success btn-sm" value="Save">
-					</div>
-				</div>
-			</div>	 -->
-		</div>
-		</form>
-
-		<div class="row">
-			<div class="col-sm-12 form-inline">
-				<div class="form-group">
-					<label for="filter" class="sr-only">Filter</label>
-					<input type="text" class="form-control" v-model="filter" placeholder="Filter">
+	<form @submit.prevent="saveProduct">
+	<div class="row" style="margin-top: 10px;margin-bottom:15px;border-bottom: 1px solid #ccc;padding-bottom: 15px;">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Batch Id:</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" v-model="product.Product_Code" disabled>
 				</div>
 			</div>
-			<div class="col-md-12">
-				<div class="table-responsive">
-					<datatable :columns="columns" :data="products" :filter-by="filter">
-						<template scope="{ row }">
-							<tr>
-								<td>{{ row.Batch_Code }}</td>
-								<td>{{ row.Batch_Name }}</td>
-								<td>{{ row.ProductCategory_Name }}</td>
-								<td>{{ row.is_active }}</td>
-								<td>{{ row.Start_Date }}</td>
-								<td>{{ row.End_Date }}</td>
-								<td>
-									<?php if($this->session->userdata('accountType') != 'u'){?>
-									<button type="button" class="button edit" @click="editProduct(row)">
-										<i class="fa fa-pencil"></i>
-									</button>
-									<button type="button" class="button" @click="deleteProduct(row.Product_SlNo)">
-										<i class="fa fa-trash"></i>
-									</button>
-									<?php }?>
-									<!-- <button type="button" class="button" @click="window.location = `/Administrator/products/barcodeGenerate/${row.Product_SlNo}`">
-										<i class="fa fa-barcode"></i>
-									</button> -->
-								</td>
-							</tr>
-						</template>
-					</datatable>
-					<datatable-pager v-model="page" type="abbreviated" :per-page="per_page"></datatable-pager>
+
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Course:</label>
+				<div class="col-md-7">
+					<select class="form-control" v-if="categories.length == 0"></select>
+					<v-select v-bind:options="categories" v-model="selectedCategory" label="ProductCategory_Name" v-if="categories.length > 0"></v-select>
+				</div>
+				<div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="/category" target="_blank" class="add-button"><i class="fa fa-plus"></i></a></div>
+			</div>
+
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Batch Name</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" v-model="product.Product_Name" required>
 				</div>
 			</div>
+
+			<!-- <div class="form-group clearfix" style="display:none;">
+				<label class="control-label col-md-4">Brand:</label>
+				<div class="col-md-7">
+					<select class="form-control" v-if="brands.length == 0"></select>
+					<v-select v-bind:options="brands" v-model="selectedBrand" label="brand_name" v-if="brands.length > 0"></v-select>
+				</div>
+				<div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="" class="add-button"><i class="fa fa-plus"></i></a></div>
+			</div> -->
+
+			<!-- <div class="form-group clearfix">
+				<label class="control-label col-md-4">Batch Name:</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" v-model="product.Product_Name" required>
+				</div>
+			</div> -->
+
+			<!-- <div class="form-group clearfix">
+				<label class="control-label col-md-4">Unit:</label>
+				<div class="col-md-7">
+					<select class="form-control" v-if="units.length == 0"></select>
+					<v-select v-bind:options="units" v-model="selectedUnit" label="Unit_Name" v-if="units.length > 0"></v-select>
+				</div>
+				<div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="/unit" target="_blank" class="add-button"><i class="fa fa-plus"></i></a></div>
+			</div>
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">VAT:</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" v-model="product.vat">
+				</div>
+			</div> -->
+
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Start Date</label>
+				<div class="col-md-7">
+					<input type="date" class="form-control" v-model="product.Start_Date">
+				</div>
+			</div>
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">End Date</label>
+				<div class="col-md-7">
+					<input type="date" class="form-control" v-model="product.End_Date">
+				</div>
+			</div>
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Is Active:</label>
+				<div class="col-md-7">
+					<input type="checkbox" v-model="product.is_active" @change="changeIsActive">
+				</div>
+			</div>
+			<div class="form-group clearfix">
+				<div class="col-md-7 col-md-offset-4">
+					<input type="submit" class="btn btn-success btn-sm" value="Save">
+				</div>
+			</div>
+		</div>	
+		<!-- <div class="col-md-6">
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Re-order level:</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" v-model="product.Product_ReOrederLevel" required>
+				</div>
+			</div>
+
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Purchase Rate:</label>
+				<div class="col-md-7">
+					<input type="text" id="purchase_rate" class="form-control" v-model="product.Product_Purchase_Rate" required v-bind:disabled="product.is_service ? true : false">
+				</div>
+			</div>
+
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Sales Rate:</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" v-model="product.Product_SellingPrice" required>
+				</div>
+			</div>
+
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Wholesale Rate:</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" v-model="product.Product_WholesaleRate" required>
+				</div>
+			</div>
+			<div class="form-group clearfix">
+				<label class="control-label col-md-4">Is Service:</label>
+				<div class="col-md-7">
+					<input type="checkbox" v-model="product.is_service" @change="changeIsService">
+				</div>
+			</div>
+			
+			<div class="form-group clearfix">
+				<div class="col-md-7 col-md-offset-4">
+					<input type="submit" class="btn btn-success btn-sm" value="Save">
+				</div>
+			</div>
+		</div>	 -->
+	</div>
+	</form>
+
+	<div class="row">
+		<div class="col-sm-12 form-inline">
+			<div class="form-group">
+				<label for="filter" class="sr-only">Filter</label>
+				<input type="text" class="form-control" v-model="filter" placeholder="Filter">
+			</div>
 		</div>
-
-
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<datatable :columns="columns" :data="products" :filter-by="filter">
+					<template scope="{ row }">
+						<tr>
+							<td>{{ row.Product_Code }}</td>
+							<td>{{ row.Product_Name }}</td>
+							<td>{{ row.ProductCategory_Name }}</td>
+							<td>{{ row.is_active }}</td>
+							<td>{{ row.Start_Date }}</td>
+							<td>{{ row.End_Date }}</td>
+							<td>
+								<?php if($this->session->userdata('accountType') != 'u'){?>
+								<button type="button" class="button edit" @click="editProduct(row)">
+									<i class="fa fa-pencil"></i>
+								</button>
+								<button type="button" class="button" @click="deleteProduct(row.Product_SlNo)">
+									<i class="fa fa-trash"></i>
+								</button>
+								<?php }?>
+								<!-- <button type="button" class="button" @click="window.location = `/Administrator/products/barcodeGenerate/${row.Product_SlNo}`">
+									<i class="fa fa-barcode"></i>
+								</button> -->
+							</td>
+						</tr>
+					</template>
+				</datatable>
+				<datatable-pager v-model="page" type="abbreviated" :per-page="per_page"></datatable-pager>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script src="<?php echo base_url();?>assets/js/vue/vue.min.js"></script>
@@ -230,12 +228,12 @@
 			return {
 				product: {
 					Product_SlNo: '',
-					Batch_Code: "<?php echo $productCode;?>",
-					Batch_Name: '',
+					Product_Code: "<?php echo $productCode;?>",
+					Product_Name: '',
 					ProductCategory_ID: '',
 					is_active: false,
-					Start_Date: '',
-					End_Date: '',
+					Start_Date: moment().format('YYYY-MM-DD'),
+					End_Date: moment().format('YYYY-MM-DD'),
 				},
 				products: [],
 				categories: [],
@@ -249,9 +247,9 @@
                     { label: 'Batch Id', field: 'Product_Code', align: 'center', filterable: false },
                     { label: 'Batch Name', field: 'Product_Name', align: 'center' },
                     { label: 'Course', field: 'ProductCategory_Name', align: 'center' },
+                    { label: 'Status', field: 'is_active', align: 'center' },
 					{ label: 'Start Date', field: 'Start_Date', align: 'center' },
 					{ label: 'End Date', field: 'End_Date', align: 'center' },
-                    { label: 'Status', field: 'is_active', align: 'center' },
                     { label: 'Action', align: 'center', filterable: false }
                 ],
                 page: 1,
@@ -286,12 +284,12 @@
 			// 		this.units = res.data;
 			// 	})
 			// },
-			getProducts(){
+			getProducts() {
 				axios.get('/get_products').then(res => {
 					this.products = res.data;
 				})
 			},
-			saveProduct(){
+			saveProduct() {
 				if(this.selectedCategory == null){
 					alert('Select category');
 					return;
@@ -315,7 +313,7 @@
 				axios.post(url, this.product)
 				.then(res=>{
 					let r = res.data;
-					alert(r.message);
+					// alert(r.message);
 					if(r.success){
 						this.clearForm();
 						this.product.Product_Code = r.productId;
@@ -325,22 +323,23 @@
 				
 			},
 			editProduct(product){
+				console.log(product)
 				let keys = Object.keys(this.product);
 				keys.forEach(key => {
 					this.product[key] = product[key];
 				})
 				
-				this.product.is_service = product.is_service == 'true' ? true : false;
+				this.product.is_active = product.is_active == 1 ? true : false;
 
 				this.selectedCategory = {
 					ProductCategory_SlNo: product.ProductCategory_ID,
 					ProductCategory_Name: product.ProductCategory_Name
 				}
 
-				this.selectedUnit = {
-					Unit_SlNo: product.Unit_ID,
-					Unit_Name: product.Unit_Name
-				}
+				// this.selectedUnit = {
+				// 	Unit_SlNo: product.Unit_ID,
+				// 	Unit_Name: product.Unit_Name
+				// }
 			},
 			deleteProduct(productId){
 				let deleteConfirm = confirm('Are you sure?');

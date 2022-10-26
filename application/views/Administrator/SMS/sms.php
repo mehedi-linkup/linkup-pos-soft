@@ -16,13 +16,28 @@
     </div>
     <div class="row" style="margin-top: 25px;">
         <div class="col-md-12">
+            <div class="form-group" style="margin-bottom: 10px">
+                <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" v-on:change="getCustomers" checked> All
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="enrolled" v-model="FilterCustomer" v-on:change="getFilterCustomers"> Enrolled Student
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="knocked" v-model="FilterCustomer" v-on:change="getFilterCustomers"> Knocked Student
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Select All &nbsp; <input type="checkbox" v-on:click="selectAll"></th>
-                            <th>Customer Code</th>
-                            <th>Customer Name</th>
+                            <th>Student Code</th>
+                            <th>Student Name</th>
                             <th>Mobile</th>
                             <th>Address</th>
                         </tr>
@@ -52,6 +67,7 @@
             return {
                 customers:[],
                 selectedCustomers: [],
+                FilterCustomer: null,
                 smsText: '',
                 smsLength: 306,
                 onProgress: false,
@@ -64,6 +80,16 @@
         methods:{
             getCustomers(){
                 axios.get('/get_customers').then(res => {
+                    this.customers = res.data.map(customer => {
+                        customer.Customer_Mobile = customer.Customer_Mobile.trim();
+                        return customer;
+                    });
+                })
+            },
+            getFilterCustomers(){
+                // console.log(this.FilterCustomer)
+                axios.post('/get_filter_customers', {Customer_Type: this.FilterCustomer}).then(res => {
+                    // console.log(res.data);
                     this.customers = res.data.map(customer => {
                         customer.Customer_Mobile = customer.Customer_Mobile.trim();
                         return customer;

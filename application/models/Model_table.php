@@ -68,13 +68,13 @@ class Model_Table extends CI_Model{
     }
 
     public function generateCustomerCode(){
-        $customerCode = "C00001";
+        $customerCode = "ST00001";
         
         $lastCustomer = $this->db->query("select * from tbl_customer order by Customer_SlNo desc limit 1");
         if($lastCustomer->num_rows() != 0){
             $newCustomerId = $lastCustomer->row()->Customer_SlNo + 1;
             $zeros = array('0', '00', '000', '0000');
-            $customerCode = 'C' . (strlen($newCustomerId) > count($zeros) ? $newCustomerId : $zeros[count($zeros) - strlen($newCustomerId)] . $newCustomerId);
+            $customerCode = 'ST' . (strlen($newCustomerId) > count($zeros) ? $newCustomerId : $zeros[count($zeros) - strlen($newCustomerId)] . $newCustomerId);
         }
 
         return $customerCode;
@@ -635,7 +635,6 @@ class Model_Table extends CI_Model{
             c.Customer_Code,
             c.Customer_Address,
             c.Customer_Mobile,
-            c.owner_name,
             (select ifnull(sum(sm.SaleMaster_TotalSaleAmount), 0.00) + ifnull(c.previous_due, 0.00)
                 from tbl_salesmaster sm 
                 where sm.SalseCustomer_IDNo = c.Customer_SlNo

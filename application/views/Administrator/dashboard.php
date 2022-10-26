@@ -151,113 +151,15 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<div class="col-md-12 header">
 					<h3> Administration Module </h3>
 				</div>
-				<?php if (array_search("product", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+				<?php if (array_search("category", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<div class="col-md-2 col-xs-6 ">
 						<div class="col-md-12 section20">
-							<a href="<?php echo base_url(); ?>product">
-								<div class="logo">
-									<i class="menu-icon fa fa-product-hunt"></i>
-								</div>
-								<div class="textModule">
-									Product Entry
-								</div>
-							</a>
-						</div>
-					</div>
-				<?php endif; ?>
-				<?php if (array_search("productlist", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
-						<div class="col-md-12 section20">
-							<a href="<?php echo base_url(); ?>productlist" target="_blank">
-								<div class="logo">
-									<i class="menu-icon fa fa-list-ul"></i>
-								</div>
-								<div class="textModule">
-									Product list
-								</div>
-							</a>
-						</div>
-					</div>
-				<?php endif; ?>
-				<?php if (array_search("product_ledger", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
-						<div class="col-md-12 section20">
-							<a href="<?php echo base_url(); ?>product_ledger">
-								<div class="logo">
-									<i class="menu-icon fa fa-list-ul"></i>
-								</div>
-								<div class="textModule">
-									Product Ledger
-								</div>
-							</a>
-						</div>
-					</div>
-				<?php endif; ?>
-				<?php if (array_search("damageEntry", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
-						<div class="col-md-12 section20">
-							<a href="<?php echo base_url(); ?>damageEntry">
-								<div class="logo">
-									<i class="menu-icon fa fa-plus-circle"></i>
-								</div>
-								<div class="textModule">
-									Damage Entry
-								</div>
-							</a>
-						</div>
-					</div>
-				<?php endif; ?>
-				<?php if (array_search("damageList", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
-						<div class="col-md-12 section20">
-							<a href="<?php echo base_url(); ?>damageList">
+							<a href="<?php echo base_url(); ?>category">
 								<div class="logo">
 									<i class="menu-icon fa fa-list"></i>
 								</div>
 								<div class="textModule">
-									Damage List
-								</div>
-							</a>
-						</div>
-					</div>
-				<?php endif; ?>
-				<?php if (array_search("product_transfer", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
-						<div class="col-md-12 section20">
-							<a href="<?php echo base_url(); ?>product_transfer">
-								<div class="logo">
-									<i class="menu-icon fa fa-exchange"></i>
-								</div>
-								<div class="textModule">
-									Product Transfer
-								</div>
-							</a>
-						</div>
-					</div>
-				<?php endif; ?>
-				<?php if (array_search("transfer_list", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
-						<div class="col-md-12 section20">
-							<a href="<?php echo base_url(); ?>transfer_list">
-								<div class="logo">
-									<i class="menu-icon fa fa-list"></i>
-								</div>
-								<div class="textModule">
-									Transfer List
-								</div>
-							</a>
-						</div>
-					</div>
-				<?php endif; ?>
-				<?php if (array_search("received_list", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
-						<div class="col-md-12 section20">
-							<a href="<?php echo base_url(); ?>received_list">
-								<div class="logo">
-									<i class="menu-icon fa fa-list"></i>
-								</div>
-								<div class="textModule">
-									Received List
+									Course Entry
 								</div>
 							</a>
 						</div>
@@ -277,6 +179,119 @@ if ($module == 'dashboard' or $module == '') { ?>
 						</div>
 					</div>
 				<?php endif; ?>
+				<?php if (array_search("product", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+					<div class="col-md-2 col-xs-6 ">
+						<div class="col-md-12 section20">
+							<a href="<?php echo base_url(); ?>product">
+								<div class="logo">
+									<i class="menu-icon fa fa-product-hunt"></i>
+								</div>
+								<div class="textModule">
+									Batch Entry
+								</div>
+							</a>
+						</div>
+					</div>
+				<?php endif; ?>
+				<?php if (array_search("productlist", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+					<div class="col-md-2 col-xs-6 ">
+						<div class="col-md-12 section20">
+							<a href="<?php echo base_url(); ?>productlist" target="_blank">
+								<div class="logo">
+									<i class="menu-icon fa fa-list-ul"></i>
+								</div>
+								<div class="textModule">
+									Batch list
+								</div>
+							</a>
+						</div>
+					</div>
+				<?php endif; ?>
+				<!-- <?php if (array_search("product_ledger", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+					<div class="col-md-2 col-xs-6 ">
+						<div class="col-md-12 section20">
+							<a href="<?php echo base_url(); ?>product_ledger">
+								<div class="logo">
+									<i class="menu-icon fa fa-list-ul"></i>
+								</div>
+								<div class="textModule">
+									Product Ledger
+								</div>
+							</a>
+						</div>
+					</div>
+				<?php endif; ?> -->
+				<!-- <?php if (array_search("damageEntry", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+					<div class="col-md-2 col-xs-6 ">
+						<div class="col-md-12 section20">
+							<a href="<?php echo base_url(); ?>damageEntry">
+								<div class="logo">
+									<i class="menu-icon fa fa-plus-circle"></i>
+								</div>
+								<div class="textModule">
+									Damage Entry
+								</div>
+							</a>
+						</div>
+					</div>
+				<?php endif; ?> -->
+				<!-- <?php if (array_search("damageList", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+					<div class="col-md-2 col-xs-6 ">
+						<div class="col-md-12 section20">
+							<a href="<?php echo base_url(); ?>damageList">
+								<div class="logo">
+									<i class="menu-icon fa fa-list"></i>
+								</div>
+								<div class="textModule">
+									Damage List
+								</div>
+							</a>
+						</div>
+					</div>
+				<?php endif; ?> -->
+				<!-- <?php if (array_search("product_transfer", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+					<div class="col-md-2 col-xs-6 ">
+						<div class="col-md-12 section20">
+							<a href="<?php echo base_url(); ?>product_transfer">
+								<div class="logo">
+									<i class="menu-icon fa fa-exchange"></i>
+								</div>
+								<div class="textModule">
+									Product Transfer
+								</div>
+							</a>
+						</div>
+					</div>
+				<?php endif; ?> -->
+				<!-- <?php if (array_search("transfer_list", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+					<div class="col-md-2 col-xs-6 ">
+						<div class="col-md-12 section20">
+							<a href="<?php echo base_url(); ?>transfer_list">
+								<div class="logo">
+									<i class="menu-icon fa fa-list"></i>
+								</div>
+								<div class="textModule">
+									Transfer List
+								</div>
+							</a>
+						</div>
+					</div>
+				<?php endif; ?> -->
+				<!-- <?php if (array_search("received_list", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
+					<div class="col-md-2 col-xs-6 ">
+						<div class="col-md-12 section20">
+							<a href="<?php echo base_url(); ?>received_list">
+								<div class="logo">
+									<i class="menu-icon fa fa-list"></i>
+								</div>
+								<div class="textModule">
+									Received List
+								</div>
+							</a>
+						</div>
+					</div>
+				<?php endif; ?> -->
+				
 				<!-- <?php if (array_search("supplier", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<div class="col-md-2 col-xs-6 ">
 						<div class="col-md-12 section20">
@@ -305,20 +320,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 						</div>
 					</div>
 				<?php endif; ?> -->
-				<?php if (array_search("category", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
-						<div class="col-md-12 section20">
-							<a href="<?php echo base_url(); ?>category">
-								<div class="logo">
-									<i class="menu-icon fa fa-list"></i>
-								</div>
-								<div class="textModule">
-									Course Entry
-								</div>
-							</a>
-						</div>
-					</div>
-				<?php endif; ?>
+				
 				<!-- <?php if (array_search("unit", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
 					<div class="col-md-2 col-xs-6 ">
 						<div class="col-md-12 section20">
@@ -398,7 +400,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 									<i class="menu-icon fa fa-usd"></i>
 								</div>
 								<div class="textModule">
-									Sales Entry
+									Std. Enrollment
 								</div>
 							</a>
 						</div>
@@ -412,7 +414,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 									<i class="menu-icon fa fa-usd"></i>
 								</div>
 								<div class="textModule">
-									Service Entry
+									Sales Entry
 								</div>
 							</a>
 						</div>

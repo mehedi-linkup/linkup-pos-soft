@@ -15,14 +15,14 @@ class Sales extends CI_Controller {
         $this->load->model('SMS_model', 'sms', true);
     }
     
-    public function index($serviceOrProduct = 'product')  {
+    public function index($serviceOrProduct = 'product') {
         $access = $this->mt->userAccess();
         if(!$access){
             redirect(base_url());
         }
         $this->cart->destroy();
         $this->session->unset_userdata('cheque');
-        $data['title'] = "Product Sales";
+        $data['title'] = "Student Enrollment";
         
         $invoice = $this->mt->generateSalesInvoice();
 
@@ -49,9 +49,9 @@ class Sales extends CI_Controller {
         $query = $this->db->query("
             SELECT
             tbl_product.*,
-            tbl_unit.*, 
+            tbl_unit.*,
             tbl_brand.*
-            FROM tbl_product 
+            FROM tbl_product
             left join tbl_unit on tbl_unit.Unit_SlNo = tbl_product.Unit_ID 
             left join tbl_brand on tbl_brand.brand_SiNo = tbl_product.brand 
             where tbl_product.Product_SlNo = '$ProID'
@@ -171,7 +171,8 @@ class Sales extends CI_Controller {
             $currentDue = $data->sales->previousDue + ($data->sales->total - $data->sales->paid);
             //Send sms
             $customerInfo = $this->db->query("select * from tbl_customer where Customer_SlNo = ?", $customerId)->row();
-            $sendToName = $customerInfo->owner_name != '' ? $customerInfo->owner_name : $customerInfo->Customer_Name;
+            // $sendToName = $customerInfo->Customer_Name != '' ? $customerInfo->Customer_Name : $customerInfo->Customer_Name;
+            $sendToName = $customerInfo->Customer_Name;
             $currency = $this->session->userdata('Currency_Name');
 
             $message = "Dear {$sendToName},\nYour bill is {$currency} {$data->sales->total}. Received {$currency} {$data->sales->paid} and current due is {$currency} {$currentDue} for invoice {$invoice}";

@@ -45,14 +45,14 @@
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-1 control-label no-padding-right"> Sales By </label>
+				<label class="col-sm-1 control-label no-padding-right"> Add By </label>
 				<div class="col-sm-2">
 					<v-select v-bind:options="employees" v-model="selectedEmployee" label="Employee_Name" placeholder="Select Employee"></v-select>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-1 control-label no-padding-right"> Sales From </label>
+				<label class="col-sm-1 control-label no-padding-right"> Add From </label>
 				<div class="col-sm-2">
 					<v-select id="branchDropdown" v-bind:options="branches" label="Brunch_name" v-model="selectedBranch" disabled></v-select>
 				</div>
@@ -70,7 +70,7 @@
 	<div class="col-xs-12 col-md-9 col-lg-9">
 		<div class="widget-box">
 			<div class="widget-header">
-				<h4 class="widget-title">Sales Information</h4>
+				<h4 class="widget-title">Course Enrollment</h4>
 				<div class="widget-toolbar">
 					<a href="#" data-action="collapse">
 						<i class="ace-icon fa fa-chevron-up"></i>
@@ -86,21 +86,21 @@
 				<div class="widget-main">
 
 					<div class="row">
-						<div class="col-sm-5">
-							<div class="form-group clearfix" style="margin-bottom: 8px;">
+						<div class="col-sm-6">
+							<!-- <div class="form-group clearfix" style="margin-bottom: 8px;">
 								<label class="col-xs-4 control-label no-padding-right"> Sales Type </label>
 								<div class="col-xs-8">
 									<input type="radio" name="salesType" value="retail" v-model="sales.salesType" v-on:change="onSalesTypeChange"> Retail &nbsp;
 									<input type="radio" name="salesType" value="wholesale" v-model="sales.salesType" v-on:change="onSalesTypeChange"> Wholesale
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group">
-								<label class="col-xs-4 control-label no-padding-right"> Customer </label>
+								<label class="col-xs-4 control-label no-padding-right"> Student </label>
 								<div class="col-xs-7">
 									<v-select v-bind:options="customers" label="display_name" v-model="selectedCustomer" v-on:input="customerOnChange"></v-select>
 								</div>
 								<div class="col-xs-1" style="padding: 0;">
-									<a href="<?= base_url('customer')?>" class="btn btn-xs btn-danger" style="height: 25px; border: 0; width: 27px; margin-left: -10px;" target="_blank" title="Add New Customer"><i class="fa fa-plus" aria-hidden="true" style="margin-top: 5px;"></i></a>
+									<a href="<?= base_url('customer')?>" class="btn btn-xs btn-danger" style="height: 25px; border: 0; width: 27px; margin-left: -10px;" target="_blank" title="Add New Student"><i class="fa fa-plus" aria-hidden="true" style="margin-top: 5px;"></i></a>
 								</div>
 							</div>
 
@@ -125,16 +125,27 @@
 								</div>
 							</div>
 						</div>
-
+						<div class="col-sm-1"></div>
 						<div class="col-sm-5">
 							<form v-on:submit.prevent="addToCart">
 								<div class="form-group">
-									<label class="col-xs-3 control-label no-padding-right"> Product </label>
+									<label class="col-xs-3 control-label no-padding-right"> Course </label>
 									<div class="col-xs-8">
-										<v-select v-bind:options="products" v-model="selectedProduct" label="display_text" v-on:input="productOnChange"></v-select>
+										<select class="form-control" v-if="categories.length == 0"></select>
+										<v-select v-bind:options="categories" v-model="selectedCategory" label="ProductCategory_Name" v-if="categories.length > 0"></v-select>
 									</div>
 									<div class="col-xs-1" style="padding: 0;">
-										<a href="<?= base_url('product')?>" class="btn btn-xs btn-danger" style="height: 25px; border: 0; width: 27px; margin-left: -10px;" target="_blank" title="Add New Product"><i class="fa fa-plus" aria-hidden="true" style="margin-top: 5px;"></i></a>
+										<a href="<?= base_url('category')?>" class="btn btn-xs btn-danger" style="height: 25px; border: 0; width: 27px; margin-left: -10px;" target="_blank" title="Add New Course"><i class="fa fa-plus" aria-hidden="true" style="margin-top: 5px;"></i></a>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-xs-3 control-label no-padding-right"> Batch </label>
+									<div class="col-xs-8">
+										<v-select v-bind:options="filterProducts" v-model="selectedProduct" label="display_text"></v-select>
+									</div>
+									<div class="col-xs-1" style="padding: 0;">
+										<a href="<?= base_url('product')?>" class="btn btn-xs btn-danger" style="height: 25px; border: 0; width: 27px; margin-left: -10px;" target="_blank" title="Add New Batch"><i class="fa fa-plus" aria-hidden="true" style="margin-top: 5px;"></i></a>
 									</div>
 								</div>
 
@@ -146,17 +157,17 @@
 								</div>
 
 								<div class="form-group">
-									<label class="col-xs-3 control-label no-padding-right"> Sale Rate </label>
-									<div class="col-xs-9">
-										<input type="number" id="salesRate" placeholder="Rate" step="0.01" class="form-control" v-model="selectedProduct.Product_SellingPrice" v-on:input="productTotal"/>
+									<label class="col-xs-3 control-label no-padding-right"> Co. Fee </label>
+									<div class="col-xs-4">
+										<input type="number" id="salesRate" placeholder="Rate" step="1" class="form-control" v-model="selectedCategory.Course_Fee" v-on:input="productTotal"/>
+									</div>
+									<label class="col-xs-1 control-label no-padding-right no-padding-left"> Qty. </label>
+									<div class="col-xs-4">
+										<input type="number" id="quantity" placeholder="Qty" class="form-control" v-model="selectedProduct.quantity" v-on:input="productTotal" autocomplete="off" required/>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-xs-3 control-label no-padding-right"> Quantity </label>
-									<div class="col-xs-9">
-										<input type="number" step="0.01" id="quantity" placeholder="Qty" class="form-control" ref="quantity" v-model="selectedProduct.quantity" v-on:input="productTotal" autocomplete="off" required/>
-									</div>
-								</div>
+								<!-- <div class="form-group">
+								</div> -->
 
 								<div class="form-group" style="display:none;">
 									<label class="col-xs-3 control-label no-padding-right"> Discount</label>
@@ -181,7 +192,7 @@
 							</form>
 
 						</div>
-						<div class="col-sm-2">
+						<!-- <div class="col-sm-2">
 							<div style="display:none;" v-bind:style="{display:sales.isService == 'true' ? 'none' : ''}">
 								<div class="text-center" style="display:none;" v-bind:style="{color: productStock > 0 ? 'green' : 'red', display: selectedProduct.Product_SlNo == '' ? 'none' : ''}">{{ productStockText }}</div class="text-center">
 
@@ -190,7 +201,7 @@
 							</div>
 							<input type="password" ref="productPurchaseRate" v-model="selectedProduct.Product_Purchase_Rate" v-on:mousedown="toggleProductPurchaseRate" v-on:mouseup="toggleProductPurchaseRate"  readonly title="Purchase rate (click & hold)" style="font-size:12px;width:100%;text-align: center;">
 
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -290,7 +301,7 @@
 									<tr>
 										<td>
 											<div class="form-group">
-												<label class="col-xs-12 control-label no-padding-right">Discount Persent</label>
+												<label class="col-xs-12 control-label no-padding-right">Discount Parcent</label>
 
 												<div class="col-xs-4">
 													<input type="number" id="discountPercent" class="form-control" v-model="discountPercent" v-on:input="calculateTotal"/>
@@ -368,10 +379,10 @@
 										<td>
 											<div class="form-group">
 												<div class="col-xs-6">
-													<input type="button" class="btn btn-default btn-sm" value="Sale" v-on:click="saveSales" v-bind:disabled="saleOnProgress ? true : false" style="color: black!important;margin-top: 0px;width:100%;padding:5px;font-weight:bold;">
+													<input type="button" class="btn btn-default btn-sm" value="Save" v-on:click="saveSales" v-bind:disabled="saleOnProgress ? true : false" style="color: black!important;margin-top: 0px;width:100%;padding:5px;font-weight:bold;">
 												</div>
 												<div class="col-xs-6">
-													<a class="btn btn-info btn-sm" v-bind:href="`/sales/${sales.isService == 'true' ? 'service' : 'product'}`" style="color: black!important;margin-top: 0px;width:100%;padding:5px;font-weight:bold;">New Sale</a>
+													<a class="btn btn-info btn-sm" v-bind:href="`/sales/${sales.isService == 'true' ? 'service' : 'product'}`" style="color: black!important;margin-top: 0px;width:100%;padding:5px;font-weight:bold;">Add New</a>
 												</div>
 											</div>
 										</td>
@@ -433,20 +444,24 @@
 					Customer_SlNo: '',
 					Customer_Code: '',
 					Customer_Name: '',
-					display_name: 'Select Customer',
+					display_name: 'Select Student',
 					Customer_Mobile: '',
 					Customer_Address: '',
 					Customer_Type: ''
 				},
 				oldCustomerId: null,
 				oldPreviousDue: 0,
+				categories: [],
+				selectedCategory: {
+					Course_Fee: 0.00
+				},
 				products: [],
 				selectedProduct: {
 					Product_SlNo: '',
-					display_text: 'Select Product',
+					display_text: 'Select Batch',
 					Product_Name: '',
 					Unit_Name: '',
-					quantity: 0,
+					quantity: 1,
 					Product_Purchase_Rate: '',
 					Product_SellingPrice: 0.00,
 					vat: 0.00,
@@ -457,7 +472,8 @@
 				productStock: '',
 				saleOnProgress: false,
 				sales_due_on_update : 0,
-				userType: '<?php echo $this->session->userdata("accountType");?>'
+				userType: '<?php echo $this->session->userdata("accountType");?>',
+				filterProducts: [],
 			}
 		},
 		async created(){
@@ -465,11 +481,19 @@
 			await this.getEmployees();
 			await this.getBranches();
 			await this.getCustomers();
+			await this.getCategory();
 			this.getProducts();
 
 			if(this.sales.salesId != 0){
 				await this.getSales();
 			}
+		},
+		watch: {
+			selectedCategory(category) {
+				if(category == undefined) return;
+				this.filterProducts = this.products.filter(item => item.ProductCategory_ID == category.ProductCategory_SlNo)
+				// this.selectedProduct.Product_SellingPrice = selectedCategory.Course_Fee;
+			},
 		},
 		methods:{
 			getEmployees(){
@@ -485,31 +509,36 @@
 			async getCustomers(){
 				await axios.post('/get_customers', {customerType: this.sales.salesType}).then(res=>{
 					this.customers = res.data;
+					
 					this.customers.unshift({
 						Customer_SlNo: 'C01',
 						Customer_Code: '',
 						Customer_Name: '',
-						display_name: 'General Customer',
+						display_name: 'General Student',
 						Customer_Mobile: '',
 						Customer_Address: '',
 						Customer_Type: 'G'
 					})
+					// console.log(this.customers)
+				})
+			},
+			getCategory() {
+				axios.get('/get_categories').then(res=>{
+					// console.log(res.data);
+					this.categories = res.data;
 				})
 			},
 			getProducts(){
 				axios.post('/get_products', {isService: this.sales.isService}).then(res=>{
-					if(this.sales.salesType == 'wholesale'){
-						this.products = res.data.filter((product) => product.Product_WholesaleRate > 0);
-						this.products.map((product) => {
-							return product.Product_SellingPrice = product.Product_WholesaleRate;
-						})
-					} else {
-						this.products = res.data;
-					}
+					this.products = res.data;
 				})
 			},
 			productTotal(){
 				this.selectedProduct.total = (parseFloat(this.selectedProduct.quantity) * parseFloat(this.selectedProduct.Product_SellingPrice)).toFixed(2);
+			},
+			productOnChange() {
+				console.log(this.selectedProduct)
+
 			},
 			onSalesTypeChange(){
 				this.selectedCustomer = {
@@ -522,7 +551,6 @@
 					Customer_Type: ''
 				}
 				this.getCustomers();
-
 				this.clearProduct();
 				this.getProducts();
 			},
@@ -557,17 +585,17 @@
 					}
 				})
 			},
-			async productOnChange(){
-				if((this.selectedProduct.Product_SlNo != '' || this.selectedProduct.Product_SlNo != 0) && this.sales.isService == 'false'){
-					this.productStock = await axios.post('/get_product_stock', {productId: this.selectedProduct.Product_SlNo}).then(res => {
-						return res.data;
-					})
+			// async productOnChange(){
+			// 	if((this.selectedProduct.Product_SlNo != '' || this.selectedProduct.Product_SlNo != 0) && this.sales.isService == 'false'){
+			// 		this.productStock = await axios.post('/get_product_stock', {productId: this.selectedProduct.Product_SlNo}).then(res => {
+			// 			return res.data;
+			// 		})
 
-					this.productStockText = this.productStock > 0 ? "Available Stock" : "Stock Unavailable";
-				}
+			// 		this.productStockText = this.productStock > 0 ? "Available Stock" : "Stock Unavailable";
+			// 	}
 
-				this.$refs.quantity.focus();
-			},
+			// 	this.$refs.quantity.focus();
+			// },
 			toggleProductPurchaseRate(){
 				//this.productPurchaseRate = this.productPurchaseRate == '' ? this.selectedProduct.Product_Purchase_Rate : '';
 				this.$refs.productPurchaseRate.type = this.$refs.productPurchaseRate.type == 'text' ? 'password' : 'text';
@@ -597,11 +625,6 @@
 
 				if(product.salesRate == 0 || product.salesRate == ''){
 					alert('Enter sales rate');
-					return;
-				}
-
-				if(product.quantity > this.productStock && this.sales.isService == 'false'){
-					alert('Stock unavailable');
 					return;
 				}
 
@@ -672,11 +695,11 @@
 					this.sales.previousDue = parseFloat((this.sales.previousDue - this.sales_due_on_update)).toFixed(2);
 				}
 
-				if(parseFloat(this.selectedCustomer.Customer_Credit_Limit) < (parseFloat(this.sales.due) + parseFloat(this.sales.previousDue))){
-					alert(`Customer credit limit (${this.selectedCustomer.Customer_Credit_Limit}) exceeded`);
-					this.saleOnProgress = false;
-					return;
-				}
+				// if(parseFloat(this.selectedCustomer.Customer_Credit_Limit) < (parseFloat(this.sales.due) + parseFloat(this.sales.previousDue))){
+				// 	alert(`Customer credit limit (${this.selectedCustomer.Customer_Credit_Limit}) exceeded`);
+				// 	this.saleOnProgress = false;
+				// 	return;
+				// }
 
 				if(this.selectedEmployee != null && this.selectedEmployee.Employee_SlNo != null){
 					this.sales.employeeId = this.selectedEmployee.Employee_SlNo;

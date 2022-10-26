@@ -13,7 +13,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right" for="course_duration"> Course Duration  </label>
+			<label class="col-sm-3 control-label no-padding-right" for="course_duration"> Course Duration Hours </label>
 			<label class="col-sm-1 control-label no-padding-right">:</label>
 			<div class="col-sm-3">
 				<select id="course_duration" name="course_duration" class="form-control" style="border-radius:4px; padding:1px 6px;">

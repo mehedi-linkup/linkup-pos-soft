@@ -17,7 +17,7 @@ class Products extends CI_Controller {
         if(!$access){
             redirect(base_url());
         }
-        $data['title'] = "Product";
+        $data['title'] = "Batch";
         $data['productCode'] = $this->mt->generateProductCode();
         $data['content'] = $this->load->view('Administrator/products/add_product', $data, TRUE);
         $this->load->view('Administrator/index', $data);
@@ -91,7 +91,7 @@ class Products extends CI_Controller {
         $this->load->view('Administrator/ajax/product', $data['duplicate']);
         
     }
-    public function product_edit()  {
+    public function product_edit(){
 		$data['title'] = "Update Product";
         $id = $this->input->post('edit');
 		$data['allproduct'] =  $this->Billing_model->select_all_Product();
@@ -119,7 +119,7 @@ class Products extends CI_Controller {
 
             $product = (array)$productObj;
             unset($product['Product_SlNo']);
-            $product['is_service'] = $productObj->is_service == true ? 'true' : 'false';
+            // $product['is_service'] = $productObj->is_service == true ? 'true' : 'false';
             $product['UpdateBy'] = $this->session->userdata("FullName");
             $product['UpdateTime'] = date('Y-m-d H:i:s');
 

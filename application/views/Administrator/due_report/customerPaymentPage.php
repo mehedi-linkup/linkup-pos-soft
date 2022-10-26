@@ -94,8 +94,22 @@
 								<a href="/customer" target="_blank" class="add-button"><i class="fa fa-plus"></i></a>
 							</div>
 						</div>
+						<div class="form-group" style="display:none;" v-bind:style="{display: invoice.length > 0 ? '' : 'none'}">
+							<label class="col-md-4 control-label">Select Invoice</label>
+							<label class="col-md-1">:</label>
+							<div class="col-md-7">
+								<v-select v-bind:options="invoice" v-model="invoiceList" label="SaleMaster_InvoiceNo" placeholder="Select Invoice" @input="getSingleInvoiceDue"></v-select>
+							</div>
+						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Due</label>
+							<label class="col-md-4 control-label">Invoice Due</label>
+							<label class="col-md-1">:</label>
+							<div class="col-md-7">
+								<input type="text" class="form-control" v-model="invoiceSingleDue" disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Total Due</label>
 							<label class="col-md-1">:</label>
 							<div class="col-md-7">
 								<input type="text" class="form-control" v-model="payment.CPayment_previous_due" disabled>
@@ -200,9 +214,15 @@
 					CPayment_date: moment().format('YYYY-MM-DD'),
 					CPayment_amount: '',
 					CPayment_notes: '',
-					CPayment_previous_due: 0
+					CPayment_previous_due: 0,
+					sale_id: null
 				},
 				payments: [],
+				invoice: [],
+				invoiceList: {
+					SaleMaster_DueAmount: 0
+				},
+				invoiceSingleDue: 0,
 				customers: [],
 				selectedCustomer: {
 					display_name: 'Select Customer',
@@ -264,9 +284,24 @@
 				if(this.selectedCustomer == null || this.selectedCustomer.Customer_SlNo == undefined){
 					return;
 				}
-
+				axios.post('/get_due_invoice_list', {customerId: this.selectedCustomer.Customer_SlNo}).then(res => {
+					this.invoice = res.data;
+					// console.log(this.invoice);
+				})
 				axios.post('/get_customer_due', {customerId: this.selectedCustomer.Customer_SlNo}).then(res => {
 					this.payment.CPayment_previous_due = res.data[0].dueAmount;
+				})
+			},
+			getSingleInvoiceDue() {
+				// console.log(this.invoiceList.SaleMaster_InvoiceNo);
+				axios.post('/get_due_invoice_single', {
+					SaleMaster_SlNo: this.invoiceList.SaleMaster_SlNo,
+					SaleMaster_InvoiceNo: this.invoiceList.SaleMaster_InvoiceNo
+				}).then(res => {
+					this.invoiceSingleDue = res.data[0].due;
+					
+					this.payment.sale_id = this.invoiceList.SaleMaster_SlNo;
+					console.log(res.data[0].due);
 				})
 			},
 			getAccounts(){
@@ -290,7 +325,18 @@
 					alert('Select Customer');
 					return;
 				}
-
+				if(this.invoiceList.SaleMaster_SlNo == null) {
+					alert('Select Invoice');
+					return;
+				}
+				if(this.payment.CPayment_amount >  this.invoiceSingleDue) {
+					alert('Your payment amount is larger than your due amount!');
+					return;
+				}
+				if(this.payment.CPayment_amount == 0) {
+					alert('Your payment is clear!');
+					return;
+				}
 				this.payment.CPayment_customerID = this.selectedCustomer.Customer_SlNo;
 
 				let url = '/add_customer_payment';
@@ -350,7 +396,8 @@
 				this.payment.CPayment_customerID = '';
 				this.payment.CPayment_amount = '';
 				this.payment.CPayment_notes = '';
-				
+				this.invoice = [];
+				this.invoiceSingleDue = 0;
 				this.selectedCustomer = {
 					display_name: 'Select Customer',
 					Customer_Name: ''

@@ -408,7 +408,7 @@ if ($module == 'dashboard' or $module == '') {
 			<li class="">
 				<a href="<?php echo base_url(); ?>sales/product">
 					<i class="menu-icon fa fa-usd"></i>
-					<span class="menu-text"> Sales Entry </span>
+					<span class="menu-text">Student Enrollment </span>
 				</a>
 				<b class="arrow"></b>
 			</li>
@@ -419,7 +419,7 @@ if ($module == 'dashboard' or $module == '') {
 			<li class="">
 				<a href="<?php echo base_url(); ?>sales/service">
 					<i class="menu-icon fa fa-usd"></i>
-					<span class="menu-text"> Service Entry </span>
+					<span class="menu-text"> Sales Entry </span>
 				</a>
 				<b class="arrow"></b>
 			</li>

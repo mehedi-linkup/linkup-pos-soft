@@ -60,7 +60,38 @@ class Customer extends CI_Controller
         ", $this->session->userdata('BRANCHid'))->result();
         echo json_encode($customers);
     }
+    public function getFilterCustomers(){
+        $data = json_decode($this->input->raw_input_stream);
 
+        // $customerTypeClause = "";
+        // if(isset($data->customerType) && $data->customerType != null){
+        //     $customerTypeClause = " and Customer_Type = '$data->customerType'";
+        // }
+       
+        if($data->Customer_Type == "enrolled") {
+            $customers = $this->db->query("
+            select 
+                DISTINCT(c.Customer_Name), c.Customer_Code, c.Customer_Mobile, c.Customer_Address
+                from tbl_customer c inner join tbl_salesmaster sm 
+                on c.Customer_SlNo = sm.SalseCustomer_IDNo 
+                where c.status = 'a' and c.Customer_Type = 'retail' 
+                and c.Customer_brunchid = ?
+                order by c.Customer_SlNo desc
+            ", $this->session->userdata('BRANCHid'))->result();
+        } else {
+            $customers = $this->db->query("
+            select 
+                c.Customer_SlNo, c.Customer_Name, c.Customer_Code, c.Customer_Mobile, c.Customer_Address
+                from tbl_customer c where not exists 
+                (select sm.SalseCustomer_IDNo from tbl_salesmaster sm where c.Customer_SlNo = sm.SalseCustomer_IDNo)
+                and c.status = 'a' and c.Customer_Type = 'retail' 
+                and c.Customer_brunchid = ?
+                order by c.Customer_SlNo desc
+            ", $this->session->userdata('BRANCHid'))->result();
+        }
+        // echo json_encode($customers);
+        echo json_encode($customers);
+    }
     public function getCustomerDue(){
         $data = json_decode($this->input->raw_input_stream);
         
@@ -76,7 +107,45 @@ class Customer extends CI_Controller
 
         echo json_encode($dueResult);
     }
+    public function getDueInvoiceList(){
+        $data = json_decode($this->input->raw_input_stream);
+        
+        $clauses = "";
+        if(isset($data->customerId) && $data->customerId != null){
+            $clauses .= " and SalseCustomer_IDNo = '$data->customerId'";
+        }
+        $invoices = $this->db->query("
+            select * from tbl_salesmaster where Status = 'a'
+            and SaleMaster_branchid = ? $clauses
+        ", $this->session->userdata('BRANCHid'))->result();
 
+        echo json_encode($invoices);
+    }
+    public function  getDueInvoiceSingle(){
+        $data = json_decode($this->input->raw_input_stream);
+
+        $clauses = "";
+        if(isset($data->SaleMaster_InvoiceNo) && $data->SaleMaster_InvoiceNo != null){
+            $clauses = " and sm.SaleMaster_InvoiceNo = '$data->SaleMaster_InvoiceNo'";
+        }
+        $singleDue = $this->db->query("
+            select
+                sm.SaleMaster_DueAmount, 
+                (
+                    select ifnull(sum(cp.CPayment_amount), 0)
+                    from tbl_customer_payment cp 
+                    where cp.sale_id = ?
+                ) as payment,
+                (select sm.SaleMaster_DueAmount - payment) as due
+
+            from tbl_salesmaster sm
+            where sm.SaleMaster_branchid = ?
+            $clauses
+            order by sm.SaleMaster_SlNo asc
+        ", [$data->SaleMaster_SlNo, $this->session->userdata('BRANCHid')])->result();
+
+        echo json_encode($singleDue);
+    }
     public function getCustomerPayments(){
         $data = json_decode($this->input->raw_input_stream);
 
@@ -129,7 +198,6 @@ class Customer extends CI_Controller
         $res = ['success'=>false, 'message'=>''];
         try{
             $paymentObj = json_decode($this->input->raw_input_stream);
-    
             $payment = (array)$paymentObj;
             $payment['CPayment_invoice'] = $this->mt->generateCustomerPaymentCode();
             $payment['CPayment_status'] = 'a';
@@ -144,7 +212,8 @@ class Customer extends CI_Controller
                 $currentDue = $paymentObj->CPayment_TransactionType == 'CR' ? $paymentObj->CPayment_previous_due - $paymentObj->CPayment_amount : $paymentObj->CPayment_previous_due + $paymentObj->CPayment_amount;
                 //Send sms
                 $customerInfo = $this->db->query("select * from tbl_customer where Customer_SlNo = ?", $paymentObj->CPayment_customerID)->row();
-                $sendToName = $customerInfo->owner_name != '' ? $customerInfo->owner_name : $customerInfo->Customer_Name;
+                // $sendToName = $customerInfo->owner_name != '' ? $customerInfo->owner_name : $customerInfo->Customer_Name;
+                $sendToName = $customerInfo->Customer_Name;
                 $currency = $this->session->userdata('Currency_Name');
 
                 $message = "Dear {$sendToName},\nThanks for your payment. Received amount is {$currency} {$paymentObj->CPayment_amount}. Current due is {$currency} {$currentDue}";
@@ -231,11 +300,16 @@ class Customer extends CI_Controller
             } else {
                 $customer["AddBy"] = $this->session->userdata("FullName");
                 $customer["AddTime"] = date("Y-m-d H:i:s");
-    
-                $this->db->insert('tbl_customer', $customer);
-                $customerId = $this->db->insert_id();
-
-                $res_message = 'Student added successfully';
+                
+                // $phone_number_validation_regex = "/^[0]{1}[1]{1}[3-9]{1}[0-9]{8}$/"; 
+                // $phone_number_validation_output = preg_match($phone_number_validation_regex, $customer['Customer_Mobile']);
+                // if($phone_number_validation_output == 0) {
+                //     $res_message = 'Phone Number is invalid!';
+                // } else {
+                    $this->db->insert('tbl_customer', $customer);
+                    $customerId = $this->db->insert_id();
+                    $res_message = 'Student added successfully';
+                // }
             }
             
 
