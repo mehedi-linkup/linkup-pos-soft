@@ -28,7 +28,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<img src="<?php echo base_url(); ?>assets/images/linkup_logo.png" class="img img-responsive center-block">
 			</div>
 			<div class="col-md-10 col-md-offset-1">
-				<div class="col-md-3 col-xs-6 section4">
+				<div class="col-md-3 col-sm-6 col-xs-12 section4">
 					<div class="col-md-12 section122" style="background-color:#e1e1ff;" onmouseover="this.style.background = '#d2d2ff'" onmouseout="this.style.background = '#e1e1ff'">
 						<a href="<?php echo base_url(); ?>module/SalesModule">
 							<div class="logo">
@@ -41,7 +41,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				</div>
 
-				<div class="col-md-3 col-xs-6 section4">
+				<div class="col-md-3 col-sm-6 col-xs-12 section4">
 					<div class="col-md-12 section122" style="background-color:#dcf5ea;" onmouseover="this.style.background = '#bdecd7'" onmouseout="this.style.background = '#dcf5ea'">
 						<a href="<?php echo base_url(); ?>module/PurchaseModule">
 							<div class="logo">
@@ -55,7 +55,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				</div>
 
 				<!-- module/AccountsModule -->
-				<div class="col-md-3 col-xs-6 section4">
+				<div class="col-md-3 col-sm-6 col-xs-12 section4">
 					<div class="col-md-12 section122" style="background-color:#A7ECFB;" onmouseover="this.style.background = '#85e6fa'" onmouseout="this.style.background = '#A7ECFB'">
 						<a href="<?php echo base_url(); ?>module/AccountsModule">
 							<div class="logo">
@@ -69,7 +69,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				</div>
 
 				<!-- module/HRPayroll -->
-				<div class="col-md-3 col-xs-6 section4">
+				<div class="col-md-3 col-sm-6 col-xs-12 section4">
 					<div class="col-md-12 section122" style="background-color:#ecffd9;" onmouseover="this.style.background = '#cfff9f'" onmouseout="this.style.background = '#ecffd9'">
 						<a href="<?php echo base_url(); ?>module/HRPayroll">
 							<div class="logo">
@@ -83,7 +83,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				</div>
 
 				<!-- module/ReportsModule -->
-				<div class="col-md-3 col-xs-6 section4">
+				<div class="col-md-3 col-sm-6 col-xs-12 section4">
 					<div class="col-md-12 section122" style="background-color:#c6e2ff;" onmouseover="this.style.background = '#91c8ff'" onmouseout="this.style.background = '#c6e2ff'">
 						<a href="<?php echo base_url(); ?>module/ReportsModule">
 							<div class="logo">
@@ -96,7 +96,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				</div>
 
-				<div class="col-md-3 col-xs-6 section4">
+				<div class="col-md-3 col-sm-6 col-xs-12 section4">
 					<div class="col-md-12 section122" style="background-color:#e6e6ff;" onmouseover="this.style.background = '#b9b9ff'" onmouseout="this.style.background = '#e6e6ff'">
 						<a href="<?php echo base_url(); ?>module/Administration">
 							<div class="logo">
@@ -109,7 +109,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				</div>
 
-				<div class="col-md-3 col-xs-6 section4">
+				<div class="col-md-3 col-sm-6 col-xs-12 section4">
 					<div class="col-md-12 section122" style="background-color:#d8ebeb;" onmouseover="this.style.background = '#bddddd'" onmouseout="this.style.background = '#d8ebeb'">
 						<a href="<?php echo base_url(); ?>graph">
 							<div class="logo">
@@ -123,7 +123,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				</div>
 
 
-				<div class="col-md-3 col-xs-6 section4">
+				<div class="col-md-3 col-sm-6 col-xs-12 section4">
 					<div class="col-md-12 section122" style="background-color:#ffe3d7;" onmouseover="this.style.background = '#ffc0a6'" onmouseout="this.style.background = '#ffe3d7'">
 						<a href="<?php echo base_url(); ?>Login/logout">
 							<div class="logo">
@@ -152,7 +152,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					<h3> Administration Module </h3>
 				</div>
 				<?php if (array_search("category", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>category">
 								<div class="logo">
@@ -166,7 +166,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("customer", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>customer">
 								<div class="logo">
@@ -180,7 +180,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("product", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>product">
 								<div class="logo">
@@ -194,7 +194,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("productlist", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>productlist" target="_blank">
 								<div class="logo">
@@ -208,7 +208,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<!-- <?php if (array_search("product_ledger", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>product_ledger">
 								<div class="logo">
@@ -222,7 +222,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?> -->
 				<!-- <?php if (array_search("damageEntry", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>damageEntry">
 								<div class="logo">
@@ -236,7 +236,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?> -->
 				<!-- <?php if (array_search("damageList", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>damageList">
 								<div class="logo">
@@ -250,7 +250,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?> -->
 				<!-- <?php if (array_search("product_transfer", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>product_transfer">
 								<div class="logo">
@@ -264,7 +264,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?> -->
 				<!-- <?php if (array_search("transfer_list", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>transfer_list">
 								<div class="logo">
@@ -278,7 +278,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?> -->
 				<!-- <?php if (array_search("received_list", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>received_list">
 								<div class="logo">
@@ -293,7 +293,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?> -->
 				
 				<!-- <?php if (array_search("supplier", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>supplier">
 								<div class="logo">
@@ -307,7 +307,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?> -->
 				<!-- <?php if (array_search("brunch", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>brunch">
 								<div class="logo">
@@ -322,7 +322,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?> -->
 				
 				<!-- <?php if (array_search("unit", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>unit">
 								<div class="logo">
@@ -336,7 +336,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?> -->
 				<!-- <?php if (array_search("area", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>area">
 								<div class="logo">
@@ -351,7 +351,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?> -->
 				
 				<?php if($this->session->userdata('BRANCHid') == 1 && (isset($CheckSuperAdmin) || isset($CheckAdmin))) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>companyProfile">
 								<div class="logo">
@@ -365,7 +365,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (isset($CheckSuperAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>user">
 								<div class="logo">
@@ -393,7 +393,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					<h3>Sales Module </h3>
 				</div>
 				<?php if (array_search("sales/product", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>sales/product">
 								<div class="logo">
@@ -407,7 +407,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("sales/service", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>sales/service">
 								<div class="logo">
@@ -421,7 +421,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("salesReturn", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>salesReturn">
 								<div class="logo">
@@ -435,7 +435,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("salesrecord", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>salesrecord">
 								<div class="logo">
@@ -449,7 +449,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("currentStock", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>currentStock">
 								<div class="logo">
@@ -463,7 +463,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("quotation", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>quotation">
 								<div class="logo">
@@ -477,7 +477,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("salesinvoice", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>salesinvoice">
 								<div class="logo">
@@ -491,7 +491,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("returnList", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>returnList">
 								<div class="logo">
@@ -505,7 +505,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("sale_return_details", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>sale_return_details">
 								<div class="logo">
@@ -520,7 +520,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?>
 
 				<?php if (array_search("customerDue", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>customerDue">
 								<div class="logo">
@@ -535,7 +535,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?>
 
 				<?php if (array_search("customerPaymentReport", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>customerPaymentReport">
 								<div class="logo">
@@ -549,7 +549,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("customer_payment_history", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>customer_payment_history">
 								<div class="logo">
@@ -563,7 +563,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("customerlist", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>customerlist">
 								<div class="logo">
@@ -577,7 +577,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("price_list", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>price_list">
 								<div class="logo">
@@ -591,7 +591,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("quotation_invoice_report", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>quotation_invoice_report">
 								<div class="logo">
@@ -605,7 +605,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("quotation_record", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>quotation_record">
 								<div class="logo">
@@ -633,7 +633,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					<h3> Purchase Module </h3>
 				</div>
 				<?php if (array_search("purchase", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>purchase">
 								<div class="logo">
@@ -647,7 +647,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("purchaseReturns", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>purchaseReturns">
 								<div class="logo">
@@ -661,7 +661,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("purchaseRecord", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>purchaseRecord">
 								<div class="logo">
@@ -675,7 +675,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("AssetsEntry", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>AssetsEntry">
 								<div class="logo">
@@ -689,7 +689,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("purchaseInvoice", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>purchaseInvoice">
 								<div class="logo">
@@ -703,7 +703,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("supplierDue", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>supplierDue">
 								<div class="logo">
@@ -731,7 +731,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("supplierList", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>supplierList" target="_blank">
 								<div class="logo">
@@ -773,7 +773,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("reorder_list", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>reorder_list">
 								<div class="logo">
@@ -803,7 +803,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					<h3> Accounts Module </h3>
 				</div>
 				<?php if (array_search("cashTransaction", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>cashTransaction">
 								<div class="logo">
@@ -817,7 +817,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("bank_transactions", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>bank_transactions">
 								<div class="logo">
@@ -831,7 +831,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("customerPaymentPage", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>customerPaymentPage">
 								<div class="logo">
@@ -845,7 +845,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("supplierPayment", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>supplierPayment">
 								<div class="logo">
@@ -859,7 +859,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("cash_view", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>cash_view">
 								<div class="logo">
@@ -873,7 +873,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("account", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>account">
 								<div class="logo">
@@ -887,7 +887,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("bank_accounts", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>bank_accounts">
 								<div class="logo">
@@ -987,7 +987,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("TransactionReport", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>TransactionReport" target="_blank">
 								<div class="logo">
@@ -1002,7 +1002,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?>
 
 				<?php if (array_search("bank_transaction_report", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>bank_transaction_report">
 								<div class="logo">
@@ -1017,7 +1017,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?>
 
 				<?php if (array_search("bank_ledger", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>bank_ledger">
 								<div class="logo">
@@ -1032,7 +1032,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?>
 
 				<?php if (array_search("cashStatment", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>cashStatment">
 								<div class="logo">
@@ -1076,7 +1076,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					<h3> HR & Payroll Module </h3>
 				</div>
 				<?php if (array_search("salary_payment", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>salary_payment">
 								<div class="logo">
@@ -1090,7 +1090,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("employee", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>employee">
 								<div class="logo">
@@ -1104,7 +1104,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("emplists/all", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>emplists/all">
 								<div class="logo">
@@ -1118,7 +1118,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("designation", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>designation">
 								<div class="logo">
@@ -1132,7 +1132,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("depertment", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>depertment">
 								<div class="logo">
@@ -1147,7 +1147,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?>
 
 				<?php if (array_search("month", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>month">
 								<div class="logo">
@@ -1162,7 +1162,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 				<?php endif; ?>
 
 				<?php if (array_search("salary_payment_report", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>salary_payment_report">
 								<div class="logo">
@@ -1208,7 +1208,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("cash_view", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>cash_view">
 								<div class="logo">
@@ -1278,7 +1278,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("supplierList", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>supplierList" target="_blank">
 								<div class="logo">
@@ -1362,7 +1362,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("sale_return_details", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>sale_return_details">
 								<div class="logo">
@@ -1418,7 +1418,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("customerlist", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>customerlist">
 								<div class="logo">
@@ -1502,7 +1502,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("bank_transaction_report", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>bank_transaction_report">
 								<div class="logo">
@@ -1516,7 +1516,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 					</div>
 				<?php endif; ?>
 				<?php if (array_search("bank_ledger", $access) > -1 || isset($CheckSuperAdmin) || isset($CheckAdmin)) : ?>
-					<div class="col-md-2 col-xs-6 ">
+					<div class="col-md-2 col-sm-6 col-xs-12 ">
 						<div class="col-md-12 section20">
 							<a href="<?php echo base_url(); ?>bank_ledger">
 								<div class="logo">

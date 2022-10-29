@@ -170,7 +170,7 @@
 								</div> -->
 
 								<div class="form-group" style="display:none;">
-									<label class="col-xs-3 control-label no-padding-right"> Discount</label>
+									<label class="col-xs-3 control-label no-padding-right">Discount</label>
 									<div class="col-xs-9">
 										<span>(%)</span>
 										<input type="text" id="productDiscount" placeholder="Discount" class="form-control" style="display: inline-block; width: 90%" />
@@ -247,7 +247,7 @@
 						<tr>
 							<td colspan="5"><textarea style="width: 100%;font-size:13px;" placeholder="Note" v-model="sales.note"></textarea></td>
 							<td colspan="3" style="padding-top: 15px;font-size:18px;">{{ sales.total }}</td>
-						</tr>
+						</tr>total
 					</tbody>
 				</table>
 			</div>
@@ -534,7 +534,8 @@
 				})
 			},
 			productTotal(){
-				this.selectedProduct.total = (parseFloat(this.selectedProduct.quantity) * parseFloat(this.selectedProduct.Product_SellingPrice)).toFixed(2);
+				// this.selectedProduct.total = (parseFloat(this.selectedProduct.quantity) * parseFloat(this.selectedProduct.Product_SellingPrice)).toFixed(2);
+				this.selectedProduct.total = (parseFloat(this.selectedProduct.quantity) * parseFloat(this.selectedCategory.Course_Fee)).toFixed(2);
 			},
 			productOnChange() {
 				console.log(this.selectedProduct)
