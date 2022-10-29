@@ -83,65 +83,108 @@
 		<div class="row" style="margin-top: 10px;margin-bottom:15px;border-bottom: 1px solid #ccc;padding-bottom:15px;">
 			<div class="col-md-5">
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Student Id:</label>
+					<label class="control-label col-md-3">Student Type:</label>
+					<div class="col-md-7">
+						<label class="radio-inline">
+							<input type="radio" name="studentType" id="knocked" value="G" v-model="studentType" checked> Knocked
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="studentType" id="enrolled" value="retail" v-model="studentType"> Enrolled
+						</label>
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<label class="control-label col-md-3">Student Id:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Customer_Code" required readonly>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Name:</label>
+					<label class="control-label col-md-3">Name:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Customer_Name" required>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Father's Name:</label>
+					<label class="control-label col-md-3">Father's Name:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Father_Name" required>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Mother's Name:</label>
+					<label class="control-label col-md-3">Mother's Name:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Mother_Name" required>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Spouse Name:</label>
+					<label class="control-label col-md-3">Spouse Name:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Spouse_Name">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Date of Birth:</label>
+					<label class="control-label col-md-3">Date of Birth:</label>
 					<div class="col-md-7">
 						<input type="date" class="form-control" v-model="customer.Birth_Date">
 					</div>
 				</div>
 
-				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Nationality:</label>
+				<!-- <div class="form-group clearfix">
+					<label class="control-label col-md-3">Nationality:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Nationality">
 					</div>
-				</div>
+				</div> -->
 
 				<div class="form-group clearfix">
+					<label class="control-label col-md-3">Nationality:</label>
+					<div class="col-md-7">
+						<v-select v-bind:options="nationality"  v-model="customer.Nationality" label="Name" v-if="nationality.length > 0"></v-select>
+					</div>
+				</div>
+
+				<!--<div class="form-group clearfix">
 					<label class="control-label col-md-4">Religion:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Religion">
 					</div>
+				</div> -->
+				<div class="form-group clearfix">
+					<label class="control-label col-md-3">Religion:</label>
+					<div class="col-md-3">
+						<v-select v-bind:options="relagion" v-model="customer.Religion" label="Name" v-if="relagion.length > 0"></v-select>
+					</div>
+
+					<label class="control-label col-md-2">Blood:</label>
+					<div class="col-md-2">
+						<v-select v-bind:options="BloodGroup" v-model="customer.Blood_Group" label="Name" v-if="BloodGroup.length > 0"></v-select>
+					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Reference/job:</label>
+					<label class="control-label col-md-3">Source:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.Reference_Job">
+						<label class="checkbox-inline">
+							<input type="checkbox" id="facebook" value="facebook" v-model="sourceName"> Facebook
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" id="leaflet" value="leaflet" v-model="sourceName"> leaflet
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" id="banner" value="banner" v-model="sourceName"> Banner
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" id="friends&family" value="friends&family" v-model="sourceName"> Friends & Family
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" id="others" value="others" v-model="sourceName"> Others
+						</label>
 					</div>
 				</div>
 			</div>	
@@ -161,12 +204,14 @@
 					</div>
 				</div>
 
-				<div class="form-group clearfix">
+				<!-- <div class="form-group clearfix">
 					<label class="control-label col-md-4">Blood Group:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Blood_Group">
 					</div>
-				</div>
+				</div> -->
+				
+				
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Contact Number:</label>
@@ -199,7 +244,12 @@
 						<textarea type="text" class="form-control" v-model="customer.Other_Details"></textarea>
 					</div>
 				</div>
-				
+				<div class="form-group clearfix">
+					<label class="control-label col-md-4">Reference/job:</label>
+					<div class="col-md-7">
+						<textarea type="text" class="form-control" v-model="customer.Reference_Job"></textarea>
+					</div>
+				</div>
 				<div class="form-group clearfix">
 					<div class="col-md-7 col-md-offset-4">
 						<input type="submit" class="btn btn-success btn-sm" value="Save">
@@ -297,8 +347,25 @@
 					Customer_Credit_Limit: 0,
 				},
 				isValidPhoneNumber: true,
+				studentType: null,
 				customers: [],
 				districts: [],
+				BloodGroup: [
+					{Name: 'A+'},{Name: 'A-'},{Name: 'B+'},{Name: 'B-'},{Name: 'AB+'},{Name: 'AB-'},
+					{Name: 'O+'},{Name:'O-'}
+				],
+				relagion: [
+					{Name: 'Islam'},
+					{Name: 'Hinduism'},
+					{Name: 'Christian'},
+					{Name: 'Buddhism'},
+					{Name: 'Others'}
+				],
+				nationality: [
+					{Name: 'Bangladesh'},
+					{Name: 'Others'}
+				],
+				sourceName: [],
 				selectedDistrict: null,
 				imageUrl: '',
 				selectedFile: null,
@@ -363,7 +430,7 @@
 					return;
 				}
 				let url = '/add_customer';
-				if(this.customer.Customer_SlNo != 0){
+				if(this.customer.Customer_SlNo != 0) {
 					url = '/update_customer';
 				}
 

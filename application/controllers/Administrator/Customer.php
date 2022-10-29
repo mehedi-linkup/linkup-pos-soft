@@ -269,76 +269,79 @@ class Customer extends CI_Controller
     {
         $res = ['success'=>false, 'message'=>''];
         try{
+
             $customerObj = json_decode($this->input->post('data'));
+            $res = ['success'=>true, 'message' => $$customerObj];
+
             
-            $customerCodeCount = $this->db->query("select * from tbl_customer where Customer_Code = ?", $customerObj->Customer_Code)->num_rows();
-            if($customerCodeCount > 0){
-                $customerObj->Customer_Code = $this->mt->generateCustomerCode();
-            }
+            // $customerCodeCount = $this->db->query("select * from tbl_customer where Customer_Code = ?", $customerObj->Customer_Code)->num_rows();
+            // if($customerCodeCount > 0){
+            //     $customerObj->Customer_Code = $this->mt->generateCustomerCode();
+            // }
 
-            $customer = (array)$customerObj;
-            unset($customer['Customer_SlNo']);
-            $customer["Customer_brunchid"] = $this->session->userdata("BRANCHid");
+            // $customer = (array)$customerObj;
+            // unset($customer['Customer_SlNo']);
+            // $customer["Customer_brunchid"] = $this->session->userdata("BRANCHid");
 
-            $customerId = null;
-            $res_message = "";
+            // $customerId = null;
+            // $res_message = "";
 
-            $duplicateMobileQuery = $this->db->query("select * from tbl_customer where Customer_Mobile = ? and Customer_brunchid = ?", [$customerObj->Customer_Mobile, $this->session->userdata("BRANCHid")]);
+            // $duplicateMobileQuery = $this->db->query("select * from tbl_customer where Customer_Mobile = ? and Customer_brunchid = ?", [$customerObj->Customer_Mobile, $this->session->userdata("BRANCHid")]);
 
-            if($duplicateMobileQuery->num_rows() > 0) {
-                $duplicateCustomer = $duplicateMobileQuery->row();
+            // if($duplicateMobileQuery->num_rows() > 0) {
+            //     $duplicateCustomer = $duplicateMobileQuery->row();
 
-                unset($customer['Customer_Code']);
-                $customer["UpdateBy"]   = $this->session->userdata("FullName");
-                $customer["UpdateTime"] = date("Y-m-d H:i:s");
-                $customer["status"]     = 'a';
-                $this->db->where('Customer_SlNo', $duplicateCustomer->Customer_SlNo)->update('tbl_customer', $customer);
+            //     unset($customer['Customer_Code']);
+            //     $customer["UpdateBy"]   = $this->session->userdata("FullName");
+            //     $customer["UpdateTime"] = date("Y-m-d H:i:s");
+            //     $customer["status"]     = 'a';
+            //     $this->db->where('Customer_SlNo', $duplicateCustomer->Customer_SlNo)->update('tbl_customer', $customer);
                 
-                $customerId = $duplicateCustomer->Customer_SlNo;
-                $customerObj->Customer_Code = $duplicateCustomer->Customer_Code;
-                $res_message = 'Student updated successfully';
-            } else {
-                $customer["AddBy"] = $this->session->userdata("FullName");
-                $customer["AddTime"] = date("Y-m-d H:i:s");
+            //     $customerId = $duplicateCustomer->Customer_SlNo;
+            //     $customerObj->Customer_Code = $duplicateCustomer->Customer_Code;
+            //     $res_message = 'Student updated successfully';
+            // } else {
+            //     $customer["AddBy"] = $this->session->userdata("FullName");
+            //     $customer["AddTime"] = date("Y-m-d H:i:s");
                 
-                // $phone_number_validation_regex = "/^[0]{1}[1]{1}[3-9]{1}[0-9]{8}$/"; 
-                // $phone_number_validation_output = preg_match($phone_number_validation_regex, $customer['Customer_Mobile']);
-                // if($phone_number_validation_output == 0) {
-                //     $res_message = 'Phone Number is invalid!';
-                // } else {
-                    $this->db->insert('tbl_customer', $customer);
-                    $customerId = $this->db->insert_id();
-                    $res_message = 'Student added successfully';
-                // }
-            }
+            //     // $phone_number_validation_regex = "/^[0]{1}[1]{1}[3-9]{1}[0-9]{8}$/"; 
+            //     // $phone_number_validation_output = preg_match($phone_number_validation_regex, $customer['Customer_Mobile']);
+            //     // if($phone_number_validation_output == 0) {
+            //     //     $res_message = 'Phone Number is invalid!';
+            //     // } else {
+            //         $this->db->insert('tbl_customer', $customer);
+            //         $customerId = $this->db->insert_id();
+            //         $res_message = 'Student added successfully';
+            //     // }
+            // }
             
 
-            if(!empty($_FILES)) {
-                $config['upload_path'] = './uploads/customers/';
-                $config['allowed_types'] = 'gif|jpg|png';
+            // if(!empty($_FILES)) {
+            //     $config['upload_path'] = './uploads/customers/';
+            //     $config['allowed_types'] = 'gif|jpg|png';
 
-                $imageName = $customerObj->Customer_Code;
-                $config['file_name'] = $imageName;
-                $this->load->library('upload', $config);
-                $this->upload->do_upload('image');
-                //$imageName = $this->upload->data('file_ext'); /*for geting uploaded image name*/
+            //     $imageName = $customerObj->Customer_Code;
+            //     $config['file_name'] = $imageName;
+            //     $this->load->library('upload', $config);
+            //     $this->upload->do_upload('image');
+            //     //$imageName = $this->upload->data('file_ext'); /*for geting uploaded image name*/
 
-                $config['image_library'] = 'gd2';
-                $config['source_image'] = './uploads/customers/'. $imageName ; 
-                $config['new_image'] = './uploads/customers/';
-                $config['maintain_ratio'] = TRUE;
-                $config['width']    = 640;
-                $config['height']   = 480;
+            //     $config['image_library'] = 'gd2';
+            //     $config['source_image'] = './uploads/customers/'. $imageName ; 
+            //     $config['new_image'] = './uploads/customers/';
+            //     $config['maintain_ratio'] = TRUE;
+            //     $config['width']    = 640;
+            //     $config['height']   = 480;
 
-                $this->load->library('image_lib', $config); 
-                $this->image_lib->resize();
+            //     $this->load->library('image_lib', $config); 
+            //     $this->image_lib->resize();
 
-                $imageName = $customerObj->Customer_Code . $this->upload->data('file_ext');
+            //     $imageName = $customerObj->Customer_Code . $this->upload->data('file_ext');
 
-                $this->db->query("update tbl_customer set image_name = ? where Customer_SlNo = ?", [$imageName, $customerId]);
-            }
+            //     $this->db->query("update tbl_customer set image_name = ? where Customer_SlNo = ?", [$imageName, $customerId]);
+            // }
 
-            $res = ['success'=>true, 'message' => $res_message, 'customerCode'=>$this->mt->generateCustomerCode()];
+            // $res = ['success'=>true, 'message' => $res_message, 'customerCode'=>$this->mt->generateCustomerCode()];
         } catch (Exception $ex){
             $res = ['success'=>false, 'message'=>$ex->getMessage()];
         }
