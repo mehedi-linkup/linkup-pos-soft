@@ -56,9 +56,9 @@
 				<div class="row">
 					<div class="col-md-5 col-md-offset-1">
 						<div class="form-group">
-							<label class="col-md-4 control-label">Transaction Type</label>
+							<label class="col-md-3 control-label">Trans. Type</label>
 							<label class="col-md-1">:</label>
-							<div class="col-md-7">
+							<div class="col-md-8">
 								<select class="form-control" v-model="payment.CPayment_TransactionType" required>
 									<option value=""></option>
 									<option value="CR">Receive</option>
@@ -67,9 +67,9 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Payment Type</label>
+							<label class="col-md-3 control-label">Payment Type</label>
 							<label class="col-md-1">:</label>
-							<div class="col-md-7">
+							<div class="col-md-8">
 								<select class="form-control" v-model="payment.CPayment_Paymentby" required>
 									<option value="cash">Cash</option>
 									<option value="bank">Bank</option>
@@ -77,16 +77,16 @@
 							</div>
 						</div>
 						<div class="form-group" style="display:none;" v-bind:style="{display: payment.CPayment_Paymentby == 'bank' ? '' : 'none'}">
-							<label class="col-md-4 control-label">Bank Account</label>
+							<label class="col-md-3 control-label">Bank Account</label>
 							<label class="col-md-1">:</label>
-							<div class="col-md-7">
+							<div class="col-md-8">
 								<v-select v-bind:options="filteredAccounts" v-model="selectedAccount" label="display_text" placeholder="Select account"></v-select>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Customer</label>
+							<label class="col-md-3 control-label">Customer</label>
 							<label class="col-md-1">:</label>
-							<div class="col-md-6 col-xs-11">
+							<div class="col-md-7 col-xs-11">
 								<select class="form-control" v-if="customers.length == 0"></select>
 								<v-select v-bind:options="customers" v-model="selectedCustomer" label="display_name" @input="getCustomerDue" v-if="customers.length > 0"></v-select>
 							</div>
@@ -95,23 +95,22 @@
 							</div>
 						</div>
 						<div class="form-group" style="display:none;" v-bind:style="{display: invoice.length > 0 ? '' : 'none'}">
-							<label class="col-md-4 control-label">Select Invoice</label>
+							<label class="col-md-3 control-label">Select Invoice</label>
 							<label class="col-md-1">:</label>
-							<div class="col-md-7">
+							<div class="col-md-8">
 								<v-select v-bind:options="invoice" v-model="invoiceList" label="SaleMaster_InvoiceNo" placeholder="Select Invoice" @input="getSingleInvoiceDue"></v-select>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Invoice Due</label>
+							<label class="col-md-3 control-label">Invoice Due</label>
 							<label class="col-md-1">:</label>
-							<div class="col-md-7">
+							<div class="col-md-3">
 								<input type="text" class="form-control" v-model="invoiceSingleDue" disabled>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-4 control-label">Total Due</label>
-							<label class="col-md-1">:</label>
-							<div class="col-md-7">
+					
+							<label class="col-md-2 control-label no-padding-left">Total Due</label>
+							<!-- <label class="col-md-1">:</label> -->
+							<div class="col-md-3 no-padding-left">
 								<input type="text" class="form-control" v-model="payment.CPayment_previous_due" disabled>
 							</div>
 						</div>

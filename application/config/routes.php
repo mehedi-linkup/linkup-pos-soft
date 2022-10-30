@@ -122,6 +122,7 @@ $route['update_customer'] = 'Administrator/Customer/updateCustomer';
 $route['customerlist'] = 'Administrator/Customer/customerlist';
 $route['delete_customer'] = 'Administrator/Customer/deleteCustomer';
 $route['get_customers'] = 'Administrator/Customer/getCustomers';
+$route['get_customers_all'] = 'Administrator/Customer/getCustomersAll';
 $route['get_filter_customers'] = 'Administrator/Customer/getFilterCustomers';
 $route['get_customer_due'] = 'Administrator/Customer/getCustomerDue';
 $route['get_due_invoice_list'] = 'Administrator/Customer/getDueInvoiceList';

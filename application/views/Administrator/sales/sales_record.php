@@ -63,16 +63,16 @@
 					<label>Search Type</label>
 					<select class="form-control" v-model="searchType" @change="onChangeSearchType">
 						<option value="">All</option>
-						<option value="customer">By Customer</option>
+						<option value="customer">By Student</option>
 						<option value="employee">By Employee</option>
-						<option value="category">By Category</option>
+						<option value="category">By Course</option>
 						<option value="quantity">By Quantity</option>
 						<option value="user">By User</option>
 					</select>
 				</div>
 
 				<div class="form-group" style="display:none;" v-bind:style="{display: searchType == 'customer' && customers.length > 0 ? '' : 'none'}">
-					<label>Customer</label>
+					<label>Student</label>
 					<v-select v-bind:options="customers" v-model="selectedCustomer" label="display_name"></v-select>
 				</div>
 
@@ -82,12 +82,12 @@
 				</div>
 
 				<div class="form-group" style="display:none;" v-bind:style="{display: searchType == 'quantity' && products.length > 0 ? '' : 'none'}">
-					<label>Product</label>
+					<label>Batch</label>
 					<v-select v-bind:options="products" v-model="selectedProduct" label="display_text" @input="sales = []"></v-select>
 				</div>
 
 				<div class="form-group" style="display:none;" v-bind:style="{display: searchType == 'category' && categories.length > 0 ? '' : 'none'}">
-					<label>Category</label>
+					<label>Course</label>
 					<v-select v-bind:options="categories" v-model="selectedCategory" label="ProductCategory_Name"></v-select>
 				</div>
 
@@ -135,10 +135,11 @@
 						<tr>
 							<th>Invoice No.</th>
 							<th>Date</th>
-							<th>Customer Name</th>
+							<th>Student Name</th>
 							<th>Employee Name</th>
 							<th>Saved By</th>
-							<th>Product Name</th>
+							<th>Batch Name</th>
+							<th>Course Name</th>
 							<th>Price</th>
 							<th>Quantity</th>
 							<th>Total</th>
@@ -154,6 +155,7 @@
 								<td>{{ sale.Employee_Name }}</td>
 								<td>{{ sale.AddBy }}</td>
 								<td>{{ sale.saleDetails[0].Product_Name }}</td>
+								<td>{{ sale.saleDetails[0].ProductCategory_Name }}</td>
 								<td style="text-align:right;">{{ sale.saleDetails[0].SaleDetails_Rate }}</td>
 								<td style="text-align:center;">{{ sale.saleDetails[0].SaleDetails_TotalQuantity }}</td>
 								<td style="text-align:right;">{{ sale.saleDetails[0].SaleDetails_TotalAmount }}</td>
@@ -198,7 +200,7 @@
 						<tr>
 							<th>Invoice No.</th>
 							<th>Date</th>
-							<th>Customer Name</th>
+							<th>Student Name</th>
 							<th>Employee Name</th>
 							<th>Saved By</th>
 							<th>Sub Total</th>

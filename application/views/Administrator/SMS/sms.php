@@ -21,10 +21,10 @@
                 <input type="radio" name="inlineRadioOptions" id="inlineRadio1" v-on:change="getCustomers" checked> All
                 </label>
                 <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="enrolled" v-model="FilterCustomer" v-on:change="getFilterCustomers"> Enrolled Student
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="enrolled" v-model="FilterCustomer" v-on:change="getCustomersAll"> Enrolled Student
                 </label>
                 <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="knocked" v-model="FilterCustomer" v-on:change="getFilterCustomers"> Knocked Student
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="knocked" v-model="FilterCustomer" v-on:change="getCustomersAll"> Knocked Student
                 </label>
             </div>
         </div>
@@ -79,23 +79,31 @@
         },
         methods:{
             getCustomers(){
-                axios.get('/get_customers').then(res => {
+                axios.get('/get_customers_all').then(res => {
                     this.customers = res.data.map(customer => {
                         customer.Customer_Mobile = customer.Customer_Mobile.trim();
                         return customer;
                     });
                 })
             },
-            getFilterCustomers(){
-                // console.log(this.FilterCustomer)
-                axios.post('/get_filter_customers', {Customer_Type: this.FilterCustomer}).then(res => {
-                    // console.log(res.data);
+            getCustomersAll() {
+                axios.post('/get_customers_all', {customerType: this.FilterCustomer}).then(res => {
                     this.customers = res.data.map(customer => {
                         customer.Customer_Mobile = customer.Customer_Mobile.trim();
                         return customer;
                     });
                 })
             },
+            // getFilterCustomers(){
+            //     // console.log(this.FilterCustomer)
+            //     axios.post('/get_filter_customers', {Customer_Type: this.FilterCustomer}).then(res => {
+            //         // console.log(res.data);
+            //         this.customers = res.data.map(customer => {
+            //             customer.Customer_Mobile = customer.Customer_Mobile.trim();
+            //             return customer;
+            //         });
+            //     })
+            // },
             selectAll(){
                 let checked = event.target.checked;
                 if(checked){

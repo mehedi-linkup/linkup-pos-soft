@@ -17,10 +17,10 @@ const salesInvoice = Vue.component('sales-invoice', {
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
-                        <strong>Customer Id:</strong> {{ sales.Customer_Code }}<br>
-                        <strong>Customer Name:</strong> {{ sales.Customer_Name }}<br>
-                        <strong>Customer Address:</strong> {{ sales.Customer_Address }}<br>
-                        <strong>Customer Mobile:</strong> {{ sales.Customer_Mobile }}
+                        <strong>Student Id:</strong> {{ sales.Customer_Code }}<br>
+                        <strong>Student Name:</strong> {{ sales.Customer_Name }}<br>
+                        <strong>Student Address:</strong> {{ sales.Customer_Address }}<br>
+                        <strong>Student Mobile:</strong> {{ sales.Customer_Mobile }}
                     </div>
                     <div class="col-xs-5 text-right">
                         <strong>Sales by:</strong> {{ sales.AddBy }}<br>
@@ -39,20 +39,24 @@ const salesInvoice = Vue.component('sales-invoice', {
                             <thead>
                                 <tr>
                                     <td>Sl.</td>
-                                    <td>Description</td>
+                                    <td>Course Name</td>
+                                    <td>Batch Name</td>
+                                    <!--<td>Description</td>-->
                                     <td>Qnty</td>
-                                    <td>Unit</td>
-                                    <td>Unit Price</td>
+                                    <!--<td>Unit</td>-->
+                                    <!--<td>Unit Price</td>-->
                                     <td>Total</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(product, sl) in cart">
                                     <td>{{ sl + 1 }}</td>
+                                    <td>{{ product.ProductCategory_Name }}</td>
                                     <td>{{ product.Product_Name }}</td>
+                                    <!--<td>{{ product.description }}</td>-->
                                     <td>{{ product.SaleDetails_TotalQuantity }}</td>
-                                    <td>{{ product.Unit_Name }}</td>
-                                    <td>{{ product.SaleDetails_Rate }}</td>
+                                    <!--<td>{{ product.Unit_Name }}</td>-->
+                                    <!--<td>{{ product.SaleDetails_Rate }}</td>-->
                                     <td align="right">{{ product.SaleDetails_TotalAmount }}</td>
                                 </tr>
                             </tbody>

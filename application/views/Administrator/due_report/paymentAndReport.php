@@ -21,7 +21,7 @@ $totalDue = $type == 'CR' ? $prevdueAmont - $CPROW->CPayment_amount : $prevdueAm
     <div id="reportContent">
         <div class="row" style="margin-bottom: 20px;">
             <div class="col-xs-12">
-                <h6 style="background:#ddd; text-align: center; font-size: 18px; font-weight: 900; padding: 5px; color: #bd4700;">Customer Payment Invoice</h6>
+                <h6 style="background:#ddd; text-align: center; font-size: 18px; font-weight: 900; padding: 5px; color: #bd4700;">Student Payment Invoice</h6>
             </div>
         </div>
         <div class="row" style="margin-bottom: 20px;">

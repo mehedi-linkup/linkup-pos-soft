@@ -413,7 +413,7 @@
 					salesId: parseInt('<?php echo $salesId;?>'),
 					invoiceNo: '<?php echo $invoice;?>',
 					salesBy: '<?php echo $this->session->userdata("FullName"); ?>',
-					salesType: 'retail',
+					salesType: 'enrolled',
 					salesFrom: '',
 					salesDate: '',
 					customerId: '',
@@ -624,10 +624,10 @@
 					return;
 				}
 
-				if(product.salesRate == 0 || product.salesRate == ''){
-					alert('Enter sales rate');
-					return;
-				}
+				// if(product.salesRate == 0 || product.salesRate == ''){
+				// 	alert('Enter sales rate');
+				// 	return;
+				// }
 
 				let cartInd = this.cart.findIndex(p => p.productId == product.productId);
 				if(cartInd > -1){

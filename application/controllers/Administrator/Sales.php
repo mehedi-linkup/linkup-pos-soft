@@ -338,9 +338,9 @@ class Sales extends CI_Controller {
                     pc.ProductCategory_Name,
                     u.Unit_Name
                 from tbl_saledetails sd
-                join tbl_product p on p.Product_SlNo = sd.Product_IDNo
-                join tbl_productcategory pc on pc.ProductCategory_SlNo = p.ProductCategory_ID
-                join tbl_unit u on u.Unit_SlNo = p.Unit_ID
+                left join tbl_product p on p.Product_SlNo = sd.Product_IDNo
+                left join tbl_productcategory pc on pc.ProductCategory_SlNo = p.ProductCategory_ID
+                left join tbl_unit u on u.Unit_SlNo = p.Unit_ID
                 where sd.SaleMaster_IDNo = ?
             ", $data->salesId)->result();
     
@@ -1382,7 +1382,7 @@ class Sales extends CI_Controller {
         $data['content'] = $this->load->view('Administrator/stock/sales_stock', $data, TRUE);
         $this->load->view('Administrator/index', $data);
     }
-    public function saleInvoicePrint($saleId)  {
+    public function saleInvoicePrint($saleId) {
         $data['title'] = "Sales Invoice";
         $data['salesId'] = $saleId;
         $data['content'] = $this->load->view('Administrator/sales/sellAndreport', $data, TRUE);

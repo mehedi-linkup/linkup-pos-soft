@@ -86,10 +86,10 @@
 					<label class="control-label col-md-3">Student Type:</label>
 					<div class="col-md-7">
 						<label class="radio-inline">
-							<input type="radio" name="studentType" id="knocked" value="G" v-model="studentType" checked> Knocked
+							<input type="radio" name="studentType" id="knocked" value="knocked" v-model="customer.Customer_Type" checked> Knocked
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="studentType" id="enrolled" value="retail" v-model="studentType"> Enrolled
+							<input type="radio" name="studentType" id="enrolled" value="enrolled" v-model="customer.Customer_Type"> Enrolled
 						</label>
 					</div>
 				</div>
@@ -145,7 +145,7 @@
 				<div class="form-group clearfix">
 					<label class="control-label col-md-3">Nationality:</label>
 					<div class="col-md-7">
-						<v-select v-bind:options="nationality"  v-model="customer.Nationality" label="Name" v-if="nationality.length > 0"></v-select>
+						<v-select v-bind:options="nationality"  v-model="selectedNationality" label="Name" v-if="nationality.length > 0" @input="nationalitySelection"></v-select>
 					</div>
 				</div>
 
@@ -158,12 +158,12 @@
 				<div class="form-group clearfix">
 					<label class="control-label col-md-3">Religion:</label>
 					<div class="col-md-3">
-						<v-select v-bind:options="relagion" v-model="customer.Religion" label="Name" v-if="relagion.length > 0"></v-select>
+						<v-select v-bind:options="relagion" v-model="selectedRelagion" label="Name" v-if="relagion.length > 0" @input="relagionSelection"></v-select>
 					</div>
 
-					<label class="control-label col-md-2">Blood:</label>
-					<div class="col-md-2">
-						<v-select v-bind:options="BloodGroup" v-model="customer.Blood_Group" label="Name" v-if="BloodGroup.length > 0"></v-select>
+					<label class="control-label col-md-1 no-padding-left">Blood:</label>
+					<div class="col-md-3">
+						<v-select v-bind:options="BloodGroup" v-model="selectedBlood_Group" label="Name" v-if="BloodGroup.length > 0" @input="bloodGroupSelection"></v-select>
 					</div>
 				</div>
 
@@ -171,19 +171,19 @@
 					<label class="control-label col-md-3">Source:</label>
 					<div class="col-md-7">
 						<label class="checkbox-inline">
-							<input type="checkbox" id="facebook" value="facebook" v-model="sourceName"> Facebook
+							<input type="checkbox" id="facebook" value="facebook" v-model="selectedSourceName" @change="sourceNameSelection"> Facebook
 						</label>
 						<label class="checkbox-inline">
-							<input type="checkbox" id="leaflet" value="leaflet" v-model="sourceName"> leaflet
+							<input type="checkbox" id="leaflet" value="leaflet" v-model="selectedSourceName" @change="sourceNameSelection"> Leaflet
 						</label>
 						<label class="checkbox-inline">
-							<input type="checkbox" id="banner" value="banner" v-model="sourceName"> Banner
+							<input type="checkbox" id="banner" value="banner" v-model="selectedSourceName" @change="sourceNameSelection"> Banner
 						</label>
 						<label class="checkbox-inline">
-							<input type="checkbox" id="friends&family" value="friends&family" v-model="sourceName"> Friends & Family
+							<input type="checkbox" id="friends&family" value="friends&family" v-model="selectedSourceName" @change="sourceNameSelection"> Friends & Family
 						</label>
 						<label class="checkbox-inline">
-							<input type="checkbox" id="others" value="others" v-model="sourceName"> Others
+							<input type="checkbox" id="others" value="others" v-model="selectedSourceName" @change="sourceNameSelection"> Others
 						</label>
 					</div>
 				</div>
@@ -251,7 +251,7 @@
 					</div>
 				</div>
 				<div class="form-group clearfix">
-					<div class="col-md-7 col-md-offset-4">
+					<div class="col-md-7 col-md-offset-4" style="margin-top: 10px;">
 						<input type="submit" class="btn btn-success btn-sm" value="Save">
 					</div>
 				</div>
@@ -288,6 +288,7 @@
 								<td>{{ row.AddTime | dateOnly('DD-MM-YYYY') }}</td>
 								<td>{{ row.Customer_Code }}</td>
 								<td>{{ row.Customer_Name }}</td>
+								<td>{{ row.Customer_Type }}</td>
 								<td>{{ row.Father_Name }}</td>
 								<td>{{ row.Nationality }}</td>
 								<td>{{ row.Customer_Mobile }}</td>
@@ -327,6 +328,7 @@
 				customer: {
 					Customer_SlNo: 0,
 					Customer_Code: '<?php echo $customerCode;?>',
+					// studentType:'',
 					Customer_Name: '',
 					Father_Name: '',
 					Mother_Name: '',
@@ -335,6 +337,7 @@
 					Nationality: '',
 					Religion: '',
 					Reference_Job: '',
+					sourceName: [],
 					Customer_Address: '',
 					Parmanent_Address: '',
 					Blood_Group: '',
@@ -343,7 +346,7 @@
 					Customer_Web: '',
 					Other_Details: '',
 					Birth_Date: moment().format('YYYY-MM-DD'),
-					Customer_Type: 'retail',
+					Customer_Type: '',
 					Customer_Credit_Limit: 0,
 				},
 				isValidPhoneNumber: true,
@@ -354,6 +357,7 @@
 					{Name: 'A+'},{Name: 'A-'},{Name: 'B+'},{Name: 'B-'},{Name: 'AB+'},{Name: 'AB-'},
 					{Name: 'O+'},{Name:'O-'}
 				],
+				selectedBlood_Group: null,
 				relagion: [
 					{Name: 'Islam'},
 					{Name: 'Hinduism'},
@@ -361,11 +365,13 @@
 					{Name: 'Buddhism'},
 					{Name: 'Others'}
 				],
+				selectedRelagion: null,
 				nationality: [
 					{Name: 'Bangladesh'},
 					{Name: 'Others'}
 				],
-				sourceName: [],
+				selectedNationality: null,
+				selectedSourceName : [],
 				selectedDistrict: null,
 				imageUrl: '',
 				selectedFile: null,
@@ -374,6 +380,7 @@
                     { label: 'Added Date', field: 'AddTime', align: 'center', filterable: false },
                     { label: 'Student Id', field: 'Customer_Code', align: 'center', filterable: false },
                     { label: 'Student Name', field: 'Customer_Name', align: 'center' },
+					{ label: 'Student Type', field: 'Customer_Type', align: 'center' },
                     { label: 'Father Name', field: 'Father_Name', align: 'center' },
                     { label: 'Nationality', field: 'Nationality', align: 'center' },
                     { label: 'Contact Num.', field: 'Customer_Mobile', align: 'center' },
@@ -393,7 +400,8 @@
 		},
 		created() {
 			// this.getDistricts();
-			this.getCustomers();
+			// this.getCustomers();
+			this.getCustomersAll();
 		},
 		methods: {
 			// getDistricts(){
@@ -401,6 +409,21 @@
 			// 		this.districts = res.data;
 			// 	})
 			// },
+			sourceNameSelection() {
+				// console.log(this.customer.sourceName);
+				this.customer.sourceName = this.selectedSourceName;
+				// console.log(this.selectedSourceName)
+			},
+			bloodGroupSelection() {
+				this.customer.Blood_Group = this.selectedBlood_Group.Name;
+			},
+			relagionSelection() {
+				this.customer.Religion = this.selectedRelagion.Name;
+			},
+			nationalitySelection() {
+				this.customer.Nationality = this.selectedNationality.Name;
+				console.log(this.customer.Nationality)
+			},
 			validatePhoneNumber() {
 				const validationRegex = /^01[13-9][\d]{8}$/;
 				if (this.customer.Customer_Mobile.match(validationRegex)) {
@@ -409,8 +432,13 @@
 					this.isValidPhoneNumber = false;
 				}
 			},
-			getCustomers(){
-				axios.get('/get_customers').then(res => {
+			// getCustomers(){
+			// 	axios.get('/get_customers').then(res => {
+			// 		this.customers = res.data;
+			// 	})
+			// },
+			getCustomersAll() {
+				axios.get('/get_customers_all').then(res => {
 					this.customers = res.data;
 				})
 			},
@@ -424,16 +452,22 @@
 				}
 			},
 			saveCustomer(){
+				// console.log(this.selectedRelagion)
 
 				if(this.isValidPhoneNumber == false) {
 					alert("Phone number isn't valid!");
 					return;
 				}
+				if(this.selectedRelagion == null) {
+					alert('Select relagion');
+					return;
+				}
+				
 				let url = '/add_customer';
 				if(this.customer.Customer_SlNo != 0) {
 					url = '/update_customer';
 				}
-
+				
 				let fd = new FormData();
 				fd.append('image', this.selectedFile);
 				fd.append('data', JSON.stringify(this.customer));
@@ -448,8 +482,9 @@
 					alert(r.message);
 					if(r.success){
 						this.resetForm();
+						location.reload();
 						this.customer.Customer_Code = r.customerCode;
-						this.getCustomers();
+						this.getCustomersAll();
 					}
 				})
 			},
@@ -458,10 +493,26 @@
 				keys.forEach(key => {
 					this.customer[key] = customer[key];
 				})
-
+				this.selectedBlood_Group = {
+					Name: customer.Blood_Group
+				}
+				this.selectedRelagion = {
+					Name: customer.Religion
+				},
+				this.selectedNationality = {
+					Name: customer.Nationality
+				},
 				this.selectedDistrict = {
 					District_SlNo: customer.area_ID,
 					District_Name: customer.District_Name
+				}
+
+				// console.log(customer.sourceName)
+				if(customer.sourceName) {
+					var srcNameArr = customer.sourceName.split(',');
+					// this.customer.sourceName = srcNameArr;
+					this.selectedSourceName = srcNameArr;
+					// console.log(this.customer.sourceName);
 				}
 
 				if(customer.image_name == null || customer.image_name == ''){
@@ -479,7 +530,8 @@
 					let r = res.data;
 					alert(r.message);
 					if(r.success){
-						this.getCustomers();
+						this.getCustomersAll();
+						// location.reload();
 					}
 				})
 			},
