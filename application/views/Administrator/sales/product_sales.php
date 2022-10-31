@@ -125,8 +125,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-1"></div>
-						<div class="col-sm-5">
+						<!-- <div class="col-sm-1"></div> -->
+						<div class="col-sm-6">
 							<form v-on:submit.prevent="addToCart">
 								<div class="form-group">
 									<label class="col-xs-3 control-label no-padding-right"> Course </label>
@@ -157,7 +157,7 @@
 								</div>
 
 								<div class="form-group">
-									<label class="col-xs-3 control-label no-padding-right"> Co. Fee </label>
+									<label class="col-xs-3 control-label no-padding-right"> Course Fee </label>
 									<div class="col-xs-4">
 										<input type="number" id="salesRate" placeholder="Rate" step="1" class="form-control" v-model="selectedCategory.Course_Fee" v-on:input="productTotal"/>
 									</div>

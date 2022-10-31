@@ -83,7 +83,7 @@
 		<div class="row" style="margin-top: 10px;margin-bottom:15px;border-bottom: 1px solid #ccc;padding-bottom:15px;">
 			<div class="col-md-5">
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Student Type:</label>
+					<label class="control-label col-md-4">Student Type:</label>
 					<div class="col-md-7">
 						<label class="radio-inline">
 							<input type="radio" name="studentType" id="knocked" value="knocked" v-model="customer.Customer_Type" checked> Knocked
@@ -94,56 +94,56 @@
 					</div>
 				</div>
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Student Id:</label>
+					<label class="control-label col-md-4">Student Id:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Customer_Code" required readonly>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Name:</label>
+					<label class="control-label col-md-4">Name:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Customer_Name" required>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Father's Name:</label>
+					<label class="control-label col-md-4">Father's Name:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Father_Name" required>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Mother's Name:</label>
+					<label class="control-label col-md-4">Mother's Name:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Mother_Name" required>
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Spouse Name:</label>
+					<label class="control-label col-md-4">Spouse Name:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Spouse_Name">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Date of Birth:</label>
+					<label class="control-label col-md-4">Date of Birth:</label>
 					<div class="col-md-7">
 						<input type="date" class="form-control" v-model="customer.Birth_Date">
 					</div>
 				</div>
 
 				<!-- <div class="form-group clearfix">
-					<label class="control-label col-md-3">Nationality:</label>
+					<label class="control-label col-md-4">Nationality:</label>
 					<div class="col-md-7">
 						<input type="text" class="form-control" v-model="customer.Nationality">
 					</div>
 				</div> -->
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Nationality:</label>
+					<label class="control-label col-md-4">Nationality:</label>
 					<div class="col-md-7">
 						<v-select v-bind:options="nationality"  v-model="selectedNationality" label="Name" v-if="nationality.length > 0" @input="nationalitySelection"></v-select>
 					</div>
@@ -156,7 +156,7 @@
 					</div>
 				</div> -->
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Religion:</label>
+					<label class="control-label col-md-4">Religion:</label>
 					<div class="col-md-3">
 						<v-select v-bind:options="relagion" v-model="selectedRelagion" label="Name" v-if="relagion.length > 0" @input="relagionSelection"></v-select>
 					</div>
@@ -168,7 +168,7 @@
 				</div>
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-3">Source:</label>
+					<label class="control-label col-md-4">Source:</label>
 					<div class="col-md-7">
 						<label class="checkbox-inline">
 							<input type="checkbox" id="facebook" value="facebook" v-model="selectedSourceName" @change="sourceNameSelection"> Facebook
