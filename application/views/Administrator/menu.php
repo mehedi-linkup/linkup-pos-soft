@@ -803,7 +803,7 @@ if ($module == 'dashboard' or $module == '') {
 			<li class="">
 				<a href="<?php echo base_url(); ?>customerPaymentPage">
 					<i class="menu-icon fa fa-money"></i>
-					<span class="menu-text"> Customer Payment </span>
+					<span class="menu-text"> Student Payment </span>
 				</a>
 				<b class="arrow"></b>
 			</li>

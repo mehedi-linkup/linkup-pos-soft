@@ -84,7 +84,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label">Customer</label>
+							<label class="col-md-3 control-label">Student</label>
 							<label class="col-md-1">:</label>
 							<div class="col-md-7 col-xs-11">
 								<select class="form-control" v-if="customers.length == 0"></select>
@@ -224,7 +224,7 @@
 				invoiceSingleDue: 0,
 				customers: [],
 				selectedCustomer: {
-					display_name: 'Select Customer',
+					display_name: 'Select Student',
 					Customer_Name: ''
 				},
 				accounts: [],
@@ -234,7 +234,7 @@
 				columns: [
                     { label: 'Transaction Id', field: 'CPayment_invoice', align: 'center' },
                     { label: 'Date', field: 'CPayment_date', align: 'center' },
-                    { label: 'Customer', field: 'Customer_Name', align: 'center' },
+                    { label: 'Student', field: 'Customer_Name', align: 'center' },
                     { label: 'Transaction Type', field: 'transaction_type', align: 'center' },
                     { label: 'Payment by', field: 'payment_by', align: 'center' },
                     { label: 'Amount', field: 'CPayment_amount', align: 'center' },

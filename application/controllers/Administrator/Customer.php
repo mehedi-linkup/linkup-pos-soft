@@ -23,7 +23,7 @@ class Customer extends CI_Controller
         if(!$access){
             redirect(base_url());
         }
-        $data['title'] = "Customer";
+        $data['title'] = "Student";
         $data['customerCode'] = $this->mt->generateCustomerCode();
         $data['content'] = $this->load->view('Administrator/add_customer', $data, TRUE);
         $this->load->view('Administrator/index', $data);
@@ -291,16 +291,19 @@ class Customer extends CI_Controller
 
             $customerObj = json_decode($this->input->post('data'));
 
+            // echo gettype($customerObj->sourceName);
+            // echo json_encode($customerObj);exit;
+
             $customerCodeCount = $this->db->query("select * from tbl_customer where Customer_Code = ?", $customerObj->Customer_Code)->num_rows();
-            if($customerCodeCount > 0){
+            if($customerCodeCount > 0) {
                 $customerObj->Customer_Code = $this->mt->generateCustomerCode();
             }
-            if($customerObj->sourceName) {
-                $sourceNameAll = "";
-                foreach($customerObj->sourceName as $item)  
-                {  
-                    $sourceNameAll .= $item.",";  
-                } 
+            if(count($customerObj->sourceName)) {
+                $sourceNameAll = implode(",",$customerObj->sourceName);
+                // foreach($customerObj->sourceName as $item)  
+                // {  
+                //     $sourceNameAll .= $item.",";  
+                // } 
 
                 $customerObj->sourceName = $sourceNameAll;
             }
@@ -378,6 +381,9 @@ class Customer extends CI_Controller
         $res = ['success'=>false, 'message'=>''];
         try{
             $customerObj = json_decode($this->input->post('data'));
+
+            // echo gettype($customerObj->sourceName);
+            // echo json_encode($customerObj);exit;
             
             $customerMobileCount = $this->db->query("select * from tbl_customer where Customer_Mobile = ? and Customer_SlNo != ? and Customer_brunchid = ?", [$customerObj->Customer_Mobile, $customerObj->Customer_SlNo, $this->session->userdata("BRANCHid")])->num_rows();
 
@@ -386,12 +392,14 @@ class Customer extends CI_Controller
                 echo Json_encode($res);
                 exit;
             }
-            if($customerObj->sourceName) {
-                $sourceNameAll = "";
-                foreach($customerObj->sourceName as $item)  
-                {  
-                    $sourceNameAll .= $item.",";  
-                } 
+            if(count($customerObj->sourceName) > 0) {
+
+                $sourceNameAll = implode(",",$customerObj->sourceName);
+                
+                // foreach($customerObj->sourceName as $item)  
+                // {  
+                //     $sourceNameAll .= $item.",";
+                // } 
 
                 $customerObj->sourceName = $sourceNameAll;
             }
@@ -516,7 +524,7 @@ class Customer extends CI_Controller
         if(!$access){
             redirect(base_url());
         }
-        $data['title'] = "Customer Payment";
+        $data['title'] = "Student Payment";
         $data['paymentHis'] = $this->Billing_model->fatch_all_payment();
         $query0 = $this->db->query("SELECT * FROM tbl_customer_payment ORDER BY CPayment_id DESC LIMIT 1");
         $row = $query0->row();

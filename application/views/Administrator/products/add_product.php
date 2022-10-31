@@ -189,7 +189,7 @@
 							<td>{{ row.Product_Code }}</td>
 							<td>{{ row.Product_Name }}</td>
 							<td>{{ row.ProductCategory_Name }}</td>
-							<td>{{ row.is_active }}</td>
+							<td>{{ row.is_active == 1 ?  'Active' : 'Inactive' }}</td>
 							<td>{{ row.Start_Date }}</td>
 							<td>{{ row.End_Date }}</td>
 							<td>

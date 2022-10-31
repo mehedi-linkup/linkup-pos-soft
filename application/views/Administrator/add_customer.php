@@ -415,14 +415,14 @@
 				// console.log(this.selectedSourceName)
 			},
 			bloodGroupSelection() {
-				this.customer.Blood_Group = this.selectedBlood_Group.Name;
+				this.customer.Blood_Group = this.selectedBlood_Group.Name == null ? null : this.selectedBlood_Group.Name;
 			},
 			relagionSelection() {
-				this.customer.Religion = this.selectedRelagion.Name;
+				this.customer.Religion = this.selectedRelagion.Name == null ? null : this.selectedRelagion.Name;
 			},
 			nationalitySelection() {
-				this.customer.Nationality = this.selectedNationality.Name;
-				console.log(this.customer.Nationality)
+				this.customer.Nationality = this.selectedNationality == null ? null : this.selectedNationality.Name;
+				// console.log(this.customer.Nationality)
 			},
 			validatePhoneNumber() {
 				const validationRegex = /^01[13-9][\d]{8}$/;
@@ -453,13 +453,23 @@
 			},
 			saveCustomer(){
 				// console.log(this.selectedRelagion)
-
+				if(this.customer.Customer_Type == "" || this.customer.Customer_Type == null) {
+					alert("Please select student type!");
+					return;
+				}
 				if(this.isValidPhoneNumber == false) {
 					alert("Phone number isn't valid!");
 					return;
 				}
+				if(this.selectedNationality == null) {
+					alert("Please select nationality!")
+				}
 				if(this.selectedRelagion == null) {
 					alert('Select relagion');
+					return;
+				}
+				if(this.selectedSourceName == null || this.selectedSourceName.length === 0) {
+					alert("Please select source!")
 					return;
 				}
 				
@@ -475,14 +485,14 @@
 				axios.post(url, fd, {
 					onUploadProgress: upe => {
 						let progress = Math.round(upe.loaded / upe.total * 100);
-						console.log(progress);
+						// console.log(progress);
 					}
 				}).then(res=>{
 					let r = res.data;
 					alert(r.message);
 					if(r.success){
 						this.resetForm();
-						location.reload();
+						// location.reload();
 						this.customer.Customer_Code = r.customerCode;
 						this.getCustomersAll();
 					}
@@ -512,6 +522,8 @@
 					var srcNameArr = customer.sourceName.split(',');
 					// this.customer.sourceName = srcNameArr;
 					this.selectedSourceName = srcNameArr;
+					this.sourceNameSelection()
+
 					// console.log(this.customer.sourceName);
 				}
 
@@ -551,6 +563,10 @@
 				})
 				this.imageUrl = '';
 				this.selectedFile = null;
+				this.selectedBlood_Group = null
+				this.selectedRelagion = null
+				this.selectedNationality = null
+				this.selectedSourceName = []
 			}
 		}
 	})

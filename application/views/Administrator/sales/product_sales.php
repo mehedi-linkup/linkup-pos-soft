@@ -529,7 +529,7 @@
 				})
 			},
 			getProducts(){
-				axios.post('/get_products', {isService: this.sales.isService}).then(res=>{
+				axios.post('/get_products', {isService: this.sales.isService, is_active: 1}).then(res=>{
 					this.products = res.data;
 				})
 			},

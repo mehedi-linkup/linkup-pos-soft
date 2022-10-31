@@ -171,7 +171,9 @@ class Products extends CI_Controller {
         if(isset($data->isService) && $data->isService != null && $data->isService != ''){
             $clauses .= " and p.is_service = '$data->isService'";
         }
-
+        if(isset($data->is_active) && $data->is_active != null && $data->is_active != ''){
+            $clauses .= " and p.is_active = '$data->is_active'";
+        }
         $products = $this->db->query("
             select
                 p.*,

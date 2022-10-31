@@ -837,8 +837,9 @@ if ($module == 'dashboard' or $module == '') { ?>
 								<div class="logo">
 									<i class="menu-icon fa fa-money"></i>
 								</div>
-								<div class="textModule" style="line-height: 13px; margin-top: 0;">
-									Customer Payment
+								<!-- <div class="textModule" style="line-height: 13px; margin-top: 0;"> -->
+								<div class="textModule">
+									Student Payment
 								</div>
 							</a>
 						</div>
