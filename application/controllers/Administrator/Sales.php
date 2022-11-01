@@ -15,7 +15,7 @@ class Sales extends CI_Controller {
         $this->load->model('SMS_model', 'sms', true);
     }
     
-    public function index($serviceOrProduct = 'product') {
+    public function index($serviceOrProduct = 'product'){
         $access = $this->mt->userAccess();
         if(!$access){
             redirect(base_url());
