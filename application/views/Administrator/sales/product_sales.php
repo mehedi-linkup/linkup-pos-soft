@@ -142,7 +142,7 @@
 								<div class="form-group">
 									<label class="col-xs-3 control-label no-padding-right"> Batch </label>
 									<div class="col-xs-8">
-										<v-select v-bind:options="filterProducts" v-model="selectedProduct" label="display_text"></v-select>
+										<v-select v-bind:options="filterProducts" v-model="selectedProduct" label="display_text" @input=productTotal></v-select>
 									</div>
 									<div class="col-xs-1" style="padding: 0;">
 										<a href="<?= base_url('product')?>" class="btn btn-xs btn-danger" style="height: 25px; border: 0; width: 27px; margin-left: -10px;" target="_blank" title="Add New Batch"><i class="fa fa-plus" aria-hidden="true" style="margin-top: 5px;"></i></a>
@@ -163,7 +163,7 @@
 									</div>
 									<label class="col-xs-1 control-label no-padding-right no-padding-left"> Qty. </label>
 									<div class="col-xs-4">
-										<input type="number" id="quantity" placeholder="Qty" class="form-control" v-model="selectedProduct.quantity" v-on:input="productTotal" autocomplete="off" required/>
+										<input type="number" id="quantity" readonly placeholder="Qty" class="form-control" v-model="quantity" v-on:input="productTotal" autocomplete="off" required/>
 									</div>
 								</div>
 								<!-- <div class="form-group">
@@ -214,9 +214,9 @@
 					<thead>
 						<tr class="">
 							<th style="width:10%;color:#000;">Sl</th>
-							<th style="width:15%;color:#000;">Product Code</th>
-							<th style="width:20%;color:#000;">Product Name</th>
-							<th style="width:15%;color:#000;">Category</th>
+							<th style="width:15%;color:#000;">Batch Code</th>
+							<th style="width:20%;color:#000;">Batch Name</th>
+							<th style="width:15%;color:#000;">Course</th>
 							<th style="width:7%;color:#000;">Qty</th>
 							<th style="width:8%;color:#000;">Rate</th>
 							<th style="width:15%;color:#000;">Total Amount</th>
@@ -320,7 +320,7 @@
 									<tr>
 										<td>
 											<div class="form-group">
-												<label class="col-xs-12 control-label no-padding-right">Transport Cost</label>
+												<label class="col-xs-12 control-label no-padding-right">Others Cost</label>
 												<div class="col-xs-12">
 													<input type="number" class="form-control" v-model="sales.transportCost" v-on:input="calculateTotal"/>
 												</div>
@@ -455,6 +455,7 @@
 				selectedCategory: {
 					Course_Fee: 0.00
 				},
+				quantity: 1,
 				products: [],
 				selectedProduct: {
 					Product_SlNo: '',
@@ -514,7 +515,7 @@
 						Customer_SlNo: 'C01',
 						Customer_Code: '',
 						Customer_Name: '',
-						display_name: 'General Student',
+						display_name: 'New Student',
 						Customer_Mobile: '',
 						Customer_Address: '',
 						Customer_Type: 'G'
@@ -535,7 +536,7 @@
 			},
 			productTotal(){
 				// this.selectedProduct.total = (parseFloat(this.selectedProduct.quantity) * parseFloat(this.selectedProduct.Product_SellingPrice)).toFixed(2);
-				this.selectedProduct.total = (parseFloat(this.selectedProduct.quantity) * parseFloat(this.selectedCategory.Course_Fee)).toFixed(2);
+				this.selectedProduct.total = (parseFloat(this.quantity) * parseFloat(this.selectedCategory.Course_Fee)).toFixed(2);
 			},
 			productOnChange() {
 				console.log(this.selectedProduct)
@@ -615,7 +616,7 @@
 				}
 
 				if(product.productId == ''){
-					alert('Select Product');
+					alert('Select Batch');
 					return;
 				}
 
@@ -645,7 +646,7 @@
 			clearProduct(){
 				this.selectedProduct = {
 					Product_SlNo: '',
-					display_text: 'Select Product',
+					display_text: 'Select Batch',
 					Product_Name: '',
 					Unit_Name: '',
 					quantity: 0,

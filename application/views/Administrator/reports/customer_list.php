@@ -1,4 +1,18 @@
 <div id="customerListReport">
+    <form @submit.prevent="saveProduct">
+	<div class="row" style="margin-top: 10px;margin-bottom:15px;border-bottom: 1px solid #ccc;padding-bottom: 15px;">
+		<div class="col-md-12">
+            <div class="form-group clearfix">
+                <label class="control-label col-md-4">Course:</label>
+                <div class="col-md-7">
+                    <select class="form-control" v-if="categories.length == 0"></select>
+                    <v-select v-bind:options="categories" v-model="selectedCategory" label="ProductCategory_Name" v-if="categories.length > 0"></v-select>
+                </div>
+                <div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="/category" target="_blank" class="add-button"><i class="fa fa-plus"></i></a></div>
+            </div>
+        </div>
+    </div>
+    </form>
     <div style="display:none;" v-bind:style="{display: customers.length > 0 ? '' : 'none'}">
         <div class="row">
             <div class="col-md-12">

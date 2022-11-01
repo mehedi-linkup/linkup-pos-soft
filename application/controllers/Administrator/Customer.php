@@ -298,14 +298,18 @@ class Customer extends CI_Controller
             if($customerCodeCount > 0) {
                 $customerObj->Customer_Code = $this->mt->generateCustomerCode();
             }
-            if(count($customerObj->sourceName)) {
+            if(count($customerObj->sourceName) > 0) {
                 $sourceNameAll = implode(",",$customerObj->sourceName);
-                // foreach($customerObj->sourceName as $item)  
-                // {  
-                //     $sourceNameAll .= $item.",";  
-                // } 
-
                 $customerObj->sourceName = $sourceNameAll;
+            }
+            if($customerObj->Nationality == '' || $customerObj->Nationality == null) {
+                $customerObj->Nationality = 'Bangladesh';
+            }
+            if($customerObj->Religion == '' || $customerObj->Religion == null) {
+                $customerObj->Religion = 'Islam';
+            }
+            if($customerObj->Blood_Group == '' || $customerObj->Blood_Group == null) {
+                $customerObj->Blood_Group = 'others';
             }
             $customer = (array)$customerObj;
             unset($customer['Customer_SlNo']);
@@ -395,13 +399,16 @@ class Customer extends CI_Controller
             if(count($customerObj->sourceName) > 0) {
 
                 $sourceNameAll = implode(",",$customerObj->sourceName);
-                
-                // foreach($customerObj->sourceName as $item)  
-                // {  
-                //     $sourceNameAll .= $item.",";
-                // } 
-
                 $customerObj->sourceName = $sourceNameAll;
+            }
+            if($customerObj->Nationality == '' || $customerObj->Nationality == null) {
+                $customerObj->Nationality = 'Bangladesh';
+            }
+            if($customerObj->Religion == '' || $customerObj->Religion == null) {
+                $customerObj->Religion = 'Islam';
+            }
+            if($customerObj->Blood_Group == '' || $customerObj->Blood_Group == null) {
+                $customerObj->Blood_Group = 'others';
             }
             $customer = (array)$customerObj;
             $customerId = $customerObj->Customer_SlNo;

@@ -98,8 +98,8 @@ class Sales extends CI_Controller {
                     $customer["UpdateTime"] = date("Y-m-d H:i:s");
                     $customer["status"]     = 'a';
 
-                    if($duplicateCustomer->Customer_Type == 'G'){
-                        $customer["Customer_Type"] = 'retail';
+                    if($duplicateCustomer->Customer_Type == 'knocked'){
+                        $customer["Customer_Type"] = 'enrolled';
                     }
                     $this->db->where('Customer_SlNo', $duplicateCustomer->Customer_SlNo)->update('tbl_customer', $customer);
                     $customerId = $duplicateCustomer->Customer_SlNo;

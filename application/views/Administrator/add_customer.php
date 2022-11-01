@@ -91,6 +91,9 @@
 						<label class="radio-inline">
 							<input type="radio" name="studentType" id="enrolled" value="enrolled" v-model="customer.Customer_Type"> Enrolled
 						</label>
+						<label class="radio-inline">
+							<input type="radio" name="studentType" id="ex_student" value="ex_student" v-model="customer.Customer_Type"> Ex Stdnt
+						</label>
 					</div>
 				</div>
 				<div class="form-group clearfix">
@@ -110,14 +113,14 @@
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Father's Name:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.Father_Name" required>
+						<input type="text" class="form-control" v-model="customer.Father_Name">
 					</div>
 				</div>
 
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Mother's Name:</label>
 					<div class="col-md-7">
-						<input type="text" class="form-control" v-model="customer.Mother_Name" required>
+						<input type="text" class="form-control" v-model="customer.Mother_Name">
 					</div>
 				</div>
 
@@ -226,13 +229,13 @@
 				<div class="form-group clearfix">
 					<label class="control-label col-md-4">Email Address:</label>
 					<div class="col-md-7">
-						<input type="email" class="form-control" v-model="customer.Customer_Email" required>
+						<input type="email" class="form-control" v-model="customer.Customer_Email">
 					</div>
 				</div>
 
 
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4">Website(If Any):</label>
+					<label class="control-label col-md-4">Studies:</label>
 					<div class="col-md-7">
 						<textarea type="text" class="form-control" v-model="customer.Customer_Web"></textarea>
 					</div>
@@ -337,7 +340,7 @@
 					Nationality: '',
 					Religion: '',
 					Reference_Job: '',
-					sourceName: [],
+					sourceName: ['others'],
 					Customer_Address: '',
 					Parmanent_Address: '',
 					Blood_Group: '',
@@ -346,7 +349,7 @@
 					Customer_Web: '',
 					Other_Details: '',
 					Birth_Date: moment().format('YYYY-MM-DD'),
-					Customer_Type: '',
+					Customer_Type: 'knocked',
 					Customer_Credit_Limit: 0,
 				},
 				isValidPhoneNumber: true,
@@ -371,7 +374,7 @@
 					{Name: 'Others'}
 				],
 				selectedNationality: null,
-				selectedSourceName : [],
+				selectedSourceName : ['others'],
 				selectedDistrict: null,
 				imageUrl: '',
 				selectedFile: null,
@@ -409,16 +412,19 @@
 			// 		this.districts = res.data;
 			// 	})
 			// },
+			testMethod() {
+				console.log(this.customer.Customer_Type)
+			},
 			sourceNameSelection() {
 				// console.log(this.customer.sourceName);
 				this.customer.sourceName = this.selectedSourceName;
 				// console.log(this.selectedSourceName)
 			},
 			bloodGroupSelection() {
-				this.customer.Blood_Group = this.selectedBlood_Group.Name == null ? null : this.selectedBlood_Group.Name;
+				this.customer.Blood_Group = this.selectedBlood_Group == null ? null : this.selectedBlood_Group.Name;
 			},
 			relagionSelection() {
-				this.customer.Religion = this.selectedRelagion.Name == null ? null : this.selectedRelagion.Name;
+				this.customer.Religion = this.selectedRelagion == null ? null : this.selectedRelagion.Name;
 			},
 			nationalitySelection() {
 				this.customer.Nationality = this.selectedNationality == null ? null : this.selectedNationality.Name;
@@ -453,21 +459,21 @@
 			},
 			saveCustomer(){
 				// console.log(this.selectedRelagion)
-				if(this.customer.Customer_Type == "" || this.customer.Customer_Type == null) {
-					alert("Please select student type!");
-					return;
-				}
+				// if(this.customer.Customer_Type == "" || this.customer.Customer_Type == null) {
+				// 	alert("Please select student type!");
+				// 	return;
+				// }
 				if(this.isValidPhoneNumber == false) {
 					alert("Phone number isn't valid!");
 					return;
 				}
-				if(this.selectedNationality == null) {
-					alert("Please select nationality!")
-				}
-				if(this.selectedRelagion == null) {
-					alert('Select relagion');
-					return;
-				}
+				// if(this.selectedNationality == null) {
+				// 	alert("Please select nationality!")
+				// }
+				// if(this.selectedRelagion == null) {
+				// 	alert('Select relagion');
+				// 	return;
+				// }
 				if(this.selectedSourceName == null || this.selectedSourceName.length === 0) {
 					alert("Please select source!")
 					return;
@@ -553,20 +559,23 @@
 				keys.forEach(key => {
 					if(typeof(this.customer[key]) == 'string'){
 						if(this.customer[key] == this.customer['Birth_Date']) {
-							this.customer.Birth_Date = moment().format('YYYY-MM-DD')
-						} else {
+							this.customer[key] = moment().format('YYYY-MM-DD')
+						}else {
 							this.customer[key] = '';
 						}
 					} else if(typeof(this.customer[key]) == 'number'){
 						this.customer[key] = 0;
+					} else if(typeof(this.customer[key]) == 'object'){
+						this.customer[key] = ['others'];
 					}
 				})
+				this.customer.Customer_Type = 'knocked'
 				this.imageUrl = '';
 				this.selectedFile = null;
-				this.selectedBlood_Group = null
-				this.selectedRelagion = null
-				this.selectedNationality = null
-				this.selectedSourceName = []
+				this.selectedBlood_Group = null;
+				this.selectedRelagion = null;
+				this.selectedNationality = null;
+				this.selectedSourceName = ['others']
 			}
 		}
 	})

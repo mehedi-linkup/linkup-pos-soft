@@ -98,7 +98,7 @@
 							<label class="col-md-3 control-label">Select Invoice</label>
 							<label class="col-md-1">:</label>
 							<div class="col-md-8">
-								<v-select v-bind:options="invoice" v-model="invoiceList" label="SaleMaster_InvoiceNo" placeholder="Select Invoice" @input="getSingleInvoiceDue"></v-select>
+								<v-select v-bind:options="invoice" v-model="invoiceSelect" label="SaleMaster_InvoiceNo" placeholder="Select Invoice" @input="getSingleInvoiceDue"></v-select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -218,7 +218,7 @@
 				},
 				payments: [],
 				invoice: [],
-				invoiceList: {
+				invoiceSelect: {
 					SaleMaster_DueAmount: 0
 				},
 				invoiceSingleDue: 0,
@@ -272,7 +272,7 @@
 				})
 			},
 			getCustomers(){
-				axios.get('/get_customers').then(res => {
+				axios.post('/get_customers', { customerType: 'enrolled'}).then(res => {
 					this.customers = res.data;
 				})
 			},
@@ -294,12 +294,12 @@
 			getSingleInvoiceDue() {
 				// console.log(this.invoiceList.SaleMaster_InvoiceNo);
 				axios.post('/get_due_invoice_single', {
-					SaleMaster_SlNo: this.invoiceList.SaleMaster_SlNo,
-					SaleMaster_InvoiceNo: this.invoiceList.SaleMaster_InvoiceNo
+					SaleMaster_SlNo: this.invoiceSelect.SaleMaster_SlNo,
+					SaleMaster_InvoiceNo: this.invoiceSelect.SaleMaster_InvoiceNo
 				}).then(res => {
 					this.invoiceSingleDue = res.data[0].due;
 					
-					this.payment.sale_id = this.invoiceList.SaleMaster_SlNo;
+					this.payment.sale_id = this.invoiceSelect.SaleMaster_SlNo;
 					console.log(res.data[0].due);
 				})
 			},
@@ -324,11 +324,11 @@
 					alert('Select Customer');
 					return;
 				}
-				if(this.invoiceList.SaleMaster_SlNo == null) {
+				if(this.invoiceSelect.SaleMaster_SlNo == null) {
 					alert('Select Invoice');
 					return;
 				}
-				if(this.payment.CPayment_amount >  this.invoiceSingleDue) {
+				if(+this.payment.CPayment_amount >  +this.invoiceSingleDue) {
 					alert('Your payment amount is larger than your due amount!');
 					return;
 				}
