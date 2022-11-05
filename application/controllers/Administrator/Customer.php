@@ -187,6 +187,7 @@ class Customer extends CI_Controller
                     select ifnull(sum(cp.CPayment_amount), 0)
                     from tbl_customer_payment cp 
                     where cp.sale_id = ?
+                    and cp.CPayment_status = 'a'
                 ) as payment,
                 (select sm.SaleMaster_DueAmount - payment) as due
 

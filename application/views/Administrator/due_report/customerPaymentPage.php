@@ -300,7 +300,7 @@
 					this.invoiceSingleDue = res.data[0].due;
 					
 					this.payment.sale_id = this.invoiceSelect.SaleMaster_SlNo;
-					console.log(res.data[0].due);
+					console.log(this.invoiceSingleDue);
 				})
 			},
 			getAccounts(){
