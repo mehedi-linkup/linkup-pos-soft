@@ -123,6 +123,7 @@ $route['customerlist'] = 'Administrator/Customer/customerlist';
 $route['delete_customer'] = 'Administrator/Customer/deleteCustomer';
 $route['get_customers'] = 'Administrator/Customer/getCustomers';
 $route['get_customers_all'] = 'Administrator/Customer/getCustomersAll';
+$route['get_customer'] = 'Administrator/Customer/getCustomer';
 $route['get_filter_customers'] = 'Administrator/Customer/getFilterCustomers';
 $route['get_customer_due'] = 'Administrator/Customer/getCustomerDue';
 $route['get_due_invoice_list'] = 'Administrator/Customer/getDueInvoiceList';
@@ -245,6 +246,7 @@ $route['sale_return_details'] = 'Administrator/Sales/saleReturnDetails';
 $route['check_sale_return/(:any)'] = 'Administrator/Sales/checkSaleReturn/$1';
 
 $route['sale_invoice_print/(:any)'] = 'Administrator/Sales/saleInvoicePrint/$1';
+$route['customer_detail_print/(:any)'] = 'Administrator/Customer/customerDetailPrint/$1';
 $route['craditlimit'] = 'Administrator/Sales/craditlimit/';
 $route['salesrecord'] = 'Administrator/Sales/sales_record';   
 $route['search_sales_record'] = 'Administrator/Reports/search_sales_record';

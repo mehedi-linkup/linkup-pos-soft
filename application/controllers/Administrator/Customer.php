@@ -35,7 +35,7 @@ class Customer extends CI_Controller
         if(!$access){
             redirect(base_url());
         }
-        $data['title'] = "Customer List";
+        $data['title'] = "Student List";
         $data['content'] = $this->load->view("Administrator/reports/customer_list", $data, true);
         $this->load->view("Administrator/index", $data);
     }
@@ -110,6 +110,39 @@ class Customer extends CI_Controller
         }
         // echo json_encode($customers);
         echo json_encode($customers);
+    }
+    public function getCustomer(){
+        $data = json_decode($this->input->raw_input_stream);
+        $branchId = $this->session->userdata("BRANCHid");
+
+        $clauses = "";
+        if(isset($data->userFullName) && $data->userFullName != ''){
+            $clauses .= " and c.AddBy = '$data->userFullName'";
+        }
+        if(isset($data->customerId) && $data->customerId != ''){
+            $clauses .= " and c.Customer_SlNo = '$data->customerId'";
+        }
+        if(isset($data->customerType) && $data->customerType != ''){
+            $clauses .= " and c.Customer_Type = '$data->customerType'";
+        }
+        $customer = $this->db->query("
+            select 
+            concat(c.Customer_Code, ' - ', c.Customer_Name) as invoice_text,
+            c.*,
+            c.Customer_Code,
+            c.Customer_Name,
+            c.Customer_Mobile,
+            c.Customer_Address,
+            c.Customer_Type
+            from tbl_customer c
+            where c.status = 'a'
+            and (c.Customer_brunchid = ? or c.Customer_brunchid = 0)
+            $clauses
+            order by c.Customer_SlNo desc
+        ", $this->session->userdata('BRANCHid'))->result();
+
+        $res['customer'] = $customer;
+        echo json_encode($res);
     }
     public function getCustomerDue(){
         $data = json_decode($this->input->raw_input_stream);
@@ -343,6 +376,21 @@ class Customer extends CI_Controller
                 // } else {
                     $this->db->insert('tbl_customer', $customer);
                     $customerId = $this->db->insert_id();
+
+                    $customerInfo = $this->db->query("select * from tbl_customer where Customer_SlNo = ?", $customerId)->row();
+                    // $sendToName = $customerInfo->Customer_Name != '' ? $customerInfo->Customer_Name : $customerInfo->Customer_Name;
+                    $sendToName = $customerInfo->Customer_Name;
+                    $currency = $this->session->userdata('Currency_Name');
+
+                    $message = "Dear {$sendToName},\nWelcome to Big Training Center. 
+                                                    \nOur Courses are_
+                                                    \n- Web Development
+                                                    \n- Graphics Design
+                                                    \n- Basic Computer Course";                    
+                    $recipient = $customerInfo->Customer_Mobile;
+
+                    $this->sms->sendSms($recipient, $message);
+
                     $res_message = 'Student added successfully';
                 // }
             }
@@ -364,7 +412,7 @@ class Customer extends CI_Controller
                 $config['width']    = 640;
                 $config['height']   = 480;
 
-                $this->load->library('image_lib', $config); 
+                $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
 
                 $imageName = $customerObj->Customer_Code . $this->upload->data('file_ext');
@@ -376,7 +424,6 @@ class Customer extends CI_Controller
         } catch (Exception $ex){
             $res = ['success'=>false, 'message'=>$ex->getMessage()];
         }
-
         echo json_encode($res);
     }
 
@@ -478,6 +525,13 @@ class Customer extends CI_Controller
         echo json_encode($res);
     }
 
+    public function customerDetailPrint($customerId) {
+        $data['title'] = "Customer Detail";
+        $data['customerId'] = $customerId;
+        $data['content'] = $this->load->view('Administrator/customer_detail_print', $data, TRUE);
+        $this->load->view('Administrator/index', $data);
+    }
+
     function customer_due()
     {
         $access = $this->mt->userAccess();
@@ -515,7 +569,6 @@ class Customer extends CI_Controller
         $datas["records"] = $result->result();
         $this->load->view('Administrator/due_report/customer_due_list', $datas);
     }
-
 
     function customer_due_payment($Custid)
     {

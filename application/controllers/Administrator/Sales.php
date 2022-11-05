@@ -168,6 +168,11 @@ class Sales extends CI_Controller {
                     and branch_id = ?
                 ", [$cartProduct->quantity, $cartProduct->productId, $this->session->userdata('BRANCHid')]);
             }
+            $quoteMessage = "";
+            foreach($data->cart as $cartProduct){
+                $quoteMessage .= "{$cartProduct->categoryName} under Batch: {$cartProduct->name},";
+            }
+
             $currentDue = $data->sales->previousDue + ($data->sales->total - $data->sales->paid);
             //Send sms
             $customerInfo = $this->db->query("select * from tbl_customer where Customer_SlNo = ?", $customerId)->row();
@@ -175,7 +180,7 @@ class Sales extends CI_Controller {
             $sendToName = $customerInfo->Customer_Name;
             $currency = $this->session->userdata('Currency_Name');
 
-            $message = "Dear {$sendToName},\nYour bill is {$currency} {$data->sales->total}. Received {$currency} {$data->sales->paid} and current due is {$currency} {$currentDue} for invoice {$invoice}";
+            $message = "Dear {$sendToName},\nYour course- {$quoteMessage} \nBill ".number_format($data->sales->total)."Tk\nReceived {$data->sales->paid}Tk\nDue- {$currentDue}Tk for invoice {$invoice}";
             $recipient = $customerInfo->Customer_Mobile;
             $this->sms->sendSms($recipient, $message);
     
@@ -1234,7 +1239,7 @@ class Sales extends CI_Controller {
         if(!$access){
             redirect(base_url());
         }
-        $data['title'] = "Sales Invoice"; 
+        $data['title'] = "Student Enrollment Invoice"; 
 		$data['content'] = $this->load->view('Administrator/sales/sales_invoice', $data, TRUE);
         $this->load->view('Administrator/index', $data);
     }
@@ -1259,7 +1264,7 @@ class Sales extends CI_Controller {
         if(!$access){
             redirect(base_url());
         }
-        $data['title'] = "Sales Record";  
+        $data['title'] = "Course Enrollment Records";  
         $data['content'] = $this->load->view('Administrator/sales/sales_record', $data, TRUE);
         $this->load->view('Administrator/index', $data); 
     }
@@ -1383,7 +1388,7 @@ class Sales extends CI_Controller {
         $this->load->view('Administrator/index', $data);
     }
     public function saleInvoicePrint($saleId) {
-        $data['title'] = "Sales Invoice";
+        $data['title'] = "Course Enrollment Invoice";
         $data['salesId'] = $saleId;
         $data['content'] = $this->load->view('Administrator/sales/sellAndreport', $data, TRUE);
         $this->load->view('Administrator/index', $data);

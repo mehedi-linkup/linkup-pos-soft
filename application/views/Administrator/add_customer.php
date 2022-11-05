@@ -77,6 +77,22 @@
 		margin: 10px auto;
 		color: red;
 	}
+	.show-button {
+		border-radius: 2px;
+		writing-mode: horizontal-tb !important;
+		text-indent: 0px;
+		text-shadow: none;
+		display: inline-block;
+		padding: 1px 6px;
+		border-width: 1px;
+		border-style: outset;
+		border-color: #b0afaf;
+		border-image: initial;
+		background-color: buttonface;
+	}
+	.show-button i {
+		color: #393939;
+	}
 </style>
 <div id="customers">
 		<form @submit.prevent="saveCustomer">
@@ -292,7 +308,7 @@
 								<td>{{ row.Customer_Code }}</td>
 								<td>{{ row.Customer_Name }}</td>
 								<td>{{ row.Customer_Type }}</td>
-								<td>{{ row.Father_Name }}</td>
+								<!-- <td>{{ row.Father_Name }}</td> -->
 								<td>{{ row.Nationality }}</td>
 								<td>{{ row.Customer_Mobile }}</td>
 								<td>{{ row.Customer_Address }}</td>
@@ -305,6 +321,7 @@
 									<button type="button" class="button" @click="deleteCustomer(row.Customer_SlNo)">
 										<i class="fa fa-trash"></i>
 									</button>
+									<a href="" class="show-button" title="Student Detail" v-bind:href="`/customer_detail_print/${row.Customer_SlNo}`" target="_blank"><i class="fa fa-eye"></i></a>
 									<?php }?>
 								</td>
 							</tr>
@@ -384,7 +401,7 @@
                     { label: 'Student Id', field: 'Customer_Code', align: 'center', filterable: false },
                     { label: 'Student Name', field: 'Customer_Name', align: 'center' },
 					{ label: 'Student Type', field: 'Customer_Type', align: 'center' },
-                    { label: 'Father Name', field: 'Father_Name', align: 'center' },
+                    // { label: 'Father Name', field: 'Father_Name', align: 'center' },
                     { label: 'Nationality', field: 'Nationality', align: 'center' },
                     { label: 'Contact Num.', field: 'Customer_Mobile', align: 'center' },
                     { label: 'Present Add.', field: 'Customer_Address', align: 'center' },

@@ -26,6 +26,9 @@
                 <label class="radio-inline">
                 <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="knocked" v-model="FilterCustomer" v-on:change="getCustomersAll"> Knocked Student
                 </label>
+                <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="ex_student" v-model="FilterCustomer" v-on:change="getCustomersAll"> Ex Student
+                </label>
             </div>
         </div>
     </div>

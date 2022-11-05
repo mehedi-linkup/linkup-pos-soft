@@ -570,7 +570,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 									<i class="menu-icon fa fa-th-list"></i>
 								</div>
 								<div class="textModule">
-									Customer List
+									Student List
 								</div>
 							</a>
 						</div>
@@ -1426,7 +1426,7 @@ if ($module == 'dashboard' or $module == '') { ?>
 									<i class="menu-icon fa fa-th-list"></i>
 								</div>
 								<div class="textModule">
-									Customer List
+									Student List
 								</div>
 							</a>
 						</div>

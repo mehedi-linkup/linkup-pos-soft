@@ -1,15 +1,18 @@
 <div id="customerListReport">
-    <form @submit.prevent="saveProduct">
+    <form @submit.prevent="getCustomers">
 	<div class="row" style="margin-top: 10px;margin-bottom:15px;border-bottom: 1px solid #ccc;padding-bottom: 15px;">
 		<div class="col-md-12">
             <div class="form-group clearfix">
-                <label class="control-label col-md-4">Course:</label>
-                <div class="col-md-7">
-                    <select class="form-control" v-if="categories.length == 0"></select>
-                    <v-select v-bind:options="categories" v-model="selectedCategory" label="ProductCategory_Name" v-if="categories.length > 0"></v-select>
+                <label class="control-label col-md-2 no-padding-right">Student Type:</label>
+                <div class="col-md-2 no-padding-left">
+                    <select class="form-control" v-if="studentTypes.length == 0"></select>
+                    <v-select v-bind:options="studentTypes" v-model="selectedStudentType" label="StudentType_Name" v-if="studentTypes.length > 0"></v-select>
                 </div>
-                <div class="col-md-1" style="padding:0;margin-left: -15px;"><a href="/category" target="_blank" class="add-button"><i class="fa fa-plus"></i></a></div>
-            </div>
+           
+				<div class="col-md-3">
+					<input type="submit" class="btn btn-success btn-sm" value="Search">
+				</div>
+			</div>
         </div>
     </div>
     </form>
@@ -26,10 +29,11 @@
                     <table class="table table-bordered table-condensed">
                         <thead>
                             <th>Sl</th>
-                            <th>Customer Id</th>
-                            <th>Customer Name</th>
+                            <th>Student Id</th>
+                            <th>Student Name</th>
                             <th>Address</th>
                             <th>Contact No.</th>
+                            <th>Action</th>
                         </thead>
                         <tbody>
                             <tr v-for="(customer, sl) in customers">
@@ -38,6 +42,9 @@
                                 <td>{{ customer.Customer_Name }}</td>
                                 <td>{{ customer.Customer_Address }} {{ customer.District_Name }}</td>
                                 <td>{{ customer.Customer_Mobile }}</td>
+                                <td style="text-align:center;">
+									<a href="" title="Student Detail" v-bind:href="`/customer_detail_print/${customer.Customer_SlNo}`" target="_blank"><i class="fa fa-eye"></i></a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -53,13 +60,25 @@
 
 <script src="<?php echo base_url(); ?>assets/js/vue/vue.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/vue/axios.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/vue/vue-select.min.js"></script>
 
 <script>
+    Vue.component('v-select', VueSelect.VueSelect);
     new Vue({
         el: '#customerListReport',
         data() {
             return {
-                customers: []
+                customers: [],
+                studentTypes: [
+                    {StudentType_Name: 'All', StudentType_value: ''},
+                    {StudentType_Name: 'Knocked', StudentType_value: 'knocked'},
+                    {StudentType_Name: 'Enrolled', StudentType_value: 'enrolled'},
+                    {StudentType_Name: 'Ex Student', StudentType_value: 'ex_student'},
+                ],
+                selectedStudentType: {
+                    StudentType_Name: 'All',
+                    StudentType_value: ''
+                }
             }
         },
         created() {
@@ -67,7 +86,10 @@
         },
         methods: {
             getCustomers() {
-                axios.get('/get_customers').then(res => {
+                let data = {
+                    customerType: this.selectedStudentType.StudentType_value
+                }
+                axios.post('/get_customers_all', data).then(res => {
                     this.customers = res.data;
                 })
             },

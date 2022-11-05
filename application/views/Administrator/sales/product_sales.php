@@ -163,7 +163,7 @@
 									</div>
 									<label class="col-xs-1 control-label no-padding-right no-padding-left"> Qty. </label>
 									<div class="col-xs-4">
-										<input type="number" id="quantity" readonly placeholder="Qty" class="form-control" v-model="quantity" v-on:input="productTotal" autocomplete="off" required/>
+										<input type="number" id="quantity" placeholder="Qty" class="form-control" v-model="quantity" v-on:input="productTotal" autocomplete="off" required/>
 									</div>
 								</div>
 								<!-- <div class="form-group">
@@ -184,7 +184,7 @@
 								</div>
 
 								<div class="form-group">
-									<label class="col-xs-3 control-label no-padding-right"> </label>
+									<label class="col-xs-3 control-label no-padding-right"></label>
 									<div class="col-xs-9">
 										<button type="submit" class="btn btn-default pull-right">Add to Cart</button>
 									</div>
@@ -462,7 +462,7 @@
 					display_text: 'Select Batch',
 					Product_Name: '',
 					Unit_Name: '',
-					quantity: 1,
+					// quantity: 1,
 					Product_Purchase_Rate: '',
 					Product_SellingPrice: 0.00,
 					vat: 0.00,
@@ -610,7 +610,7 @@
 					name: this.selectedProduct.Product_Name,
 					salesRate: this.selectedProduct.Product_SellingPrice,
 					vat: this.selectedProduct.vat,
-					quantity: this.selectedProduct.quantity,
+					quantity: this.quantity,
 					total: this.selectedProduct.total,
 					purchaseRate: this.selectedProduct.Product_Purchase_Rate
 				}
@@ -773,7 +773,7 @@
 						Customer_SlNo: sales.SalseCustomer_IDNo,
 						Customer_Code: sales.Customer_Code,
 						Customer_Name: sales.Customer_Name,
-						display_name: sales.Customer_Type == 'G' ? 'General Customer' : `${sales.Customer_Code} - ${sales.Customer_Name}`,
+						display_name: sales.Customer_Type == 'knocked' ? 'New Student' : `${sales.Customer_Code} - ${sales.Customer_Name}`,
 						Customer_Mobile: sales.Customer_Mobile,
 						Customer_Address: sales.Customer_Address,
 						Customer_Type: sales.Customer_Type

@@ -534,7 +534,7 @@ if ($module == 'dashboard' or $module == '') {
 						<li class="">
 							<a href="<?php echo base_url(); ?>customerPaymentReport">
 								<i class="menu-icon fa fa-caret-right"></i>
-								Customer Payment Report
+								Student Payment Report
 							</a>
 							<b class="arrow"></b>
 						</li>
@@ -544,7 +544,7 @@ if ($module == 'dashboard' or $module == '') {
 						<li class="">
 							<a href="<?php echo base_url(); ?>customer_payment_history">
 								<i class="menu-icon fa fa-caret-right"></i>
-								Customer Payment History
+								Student Payment History
 							</a>
 							<b class="arrow"></b>
 						</li>
@@ -554,7 +554,7 @@ if ($module == 'dashboard' or $module == '') {
 						<li class="">
 							<a href="<?php echo base_url(); ?>customerlist">
 								<i class="menu-icon fa fa-caret-right"></i>
-								Customer List
+								Student List
 							</a>
 							<b class="arrow"></b>
 						</li>
@@ -1566,7 +1566,7 @@ if ($module == 'dashboard' or $module == '') {
 						<li class="">
 							<a href="<?php echo base_url(); ?>customerlist">
 								<i class="menu-icon fa fa-caret-right"></i>
-								Customer List
+								Student List
 							</a>
 							<b class="arrow"></b>
 						</li>
