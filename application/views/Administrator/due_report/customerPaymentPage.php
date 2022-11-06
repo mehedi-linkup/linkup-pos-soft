@@ -219,7 +219,8 @@
 				payments: [],
 				invoice: [],
 				invoiceSelect: {
-					SaleMaster_DueAmount: 0
+					SaleMaster_InvoiceNo: 'Select Invoice',
+					due: 0
 				},
 				invoiceSingleDue: 0,
 				customers: [],
@@ -283,8 +284,13 @@
 				if(this.selectedCustomer == null || this.selectedCustomer.Customer_SlNo == undefined){
 					return;
 				}
+				this.invoiceSingleDue = 0;
 				axios.post('/get_due_invoice_list', {customerId: this.selectedCustomer.Customer_SlNo}).then(res => {
 					this.invoice = res.data;
+					let m = res.data.filter(function (data) {
+						return data.due > 0;
+					})
+					this.invoice = m;
 					// console.log(this.invoice);
 				})
 				axios.post('/get_customer_due', {customerId: this.selectedCustomer.Customer_SlNo}).then(res => {
@@ -292,16 +298,19 @@
 				})
 			},
 			getSingleInvoiceDue() {
+
+				this.invoiceSingleDue = this.invoiceSelect.due;
+				this.payment.sale_id = this.invoiceSelect.SaleMaster_SlNo;
+
 				// console.log(this.invoiceList.SaleMaster_InvoiceNo);
-				axios.post('/get_due_invoice_single', {
-					SaleMaster_SlNo: this.invoiceSelect.SaleMaster_SlNo,
-					SaleMaster_InvoiceNo: this.invoiceSelect.SaleMaster_InvoiceNo
-				}).then(res => {
-					this.invoiceSingleDue = res.data[0].due;
+				// axios.post('/get_due_invoice_single', {
+				// 	SaleMaster_SlNo: this.invoiceSelect.SaleMaster_SlNo,
+				// 	SaleMaster_InvoiceNo: this.invoiceSelect.SaleMaster_InvoiceNo
+				// }).then(res => {
+				// 	this.invoiceSingleDue = res.data[0].due;
 					
-					this.payment.sale_id = this.invoiceSelect.SaleMaster_SlNo;
-					console.log(this.invoiceSingleDue);
-				})
+				// 	console.log(this.invoiceSingleDue);
+				// })
 			},
 			getAccounts(){
                 axios.get('/get_bank_accounts')

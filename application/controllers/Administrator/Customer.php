@@ -159,7 +159,7 @@ class Customer extends CI_Controller
 
         echo json_encode($dueResult);
     }
-    public function getDueInvoiceList(){
+    public function getDueInvoiceList() {
         $data = json_decode($this->input->raw_input_stream);
         
         $clauses = "";
@@ -167,38 +167,52 @@ class Customer extends CI_Controller
             $clauses .= " and SalseCustomer_IDNo = '$data->customerId'";
         }
         $invoices = $this->db->query("
-            select * from tbl_salesmaster where Status = 'a'
-            and SaleMaster_branchid = ? $clauses
-        ", $this->session->userdata('BRANCHid'))->result();
-
-        echo json_encode($invoices);
-    }
-    public function  getDueInvoiceSingle(){
-        $data = json_decode($this->input->raw_input_stream);
-
-        $clauses = "";
-        if(isset($data->SaleMaster_InvoiceNo) && $data->SaleMaster_InvoiceNo != null){
-            $clauses = " and sm.SaleMaster_InvoiceNo = '$data->SaleMaster_InvoiceNo'";
-        }
-        $singleDue = $this->db->query("
             select
+                sm.SaleMaster_SlNo,
+                sm.SaleMaster_InvoiceNo,
                 sm.SaleMaster_DueAmount, 
                 (
                     select ifnull(sum(cp.CPayment_amount), 0)
                     from tbl_customer_payment cp 
-                    where cp.sale_id = ?
+                    where cp.sale_id = sm.SaleMaster_SlNo
                     and cp.CPayment_status = 'a'
                 ) as payment,
                 (select sm.SaleMaster_DueAmount - payment) as due
-
             from tbl_salesmaster sm
-            where sm.SaleMaster_branchid = ?
+            where Status = 'a'
+            and SaleMaster_branchid = ? 
             $clauses
-            order by sm.SaleMaster_SlNo asc
-        ", [$data->SaleMaster_SlNo, $this->session->userdata('BRANCHid')])->result();
+        ", $this->session->userdata('BRANCHid'))->result();
 
-        echo json_encode($singleDue);
+        echo json_encode($invoices);
     }
+    // public function  getDueInvoiceSingle(){
+    //     $data = json_decode($this->input->raw_input_stream);
+
+    //     $clauses = "";
+    //     if(isset($data->SaleMaster_InvoiceNo) && $data->SaleMaster_InvoiceNo != null){
+    //         $clauses = " and sm.SaleMaster_InvoiceNo = '$data->SaleMaster_InvoiceNo'";
+    //     }
+    //     $singleDue = $this->db->query("
+    //         select
+    //             sm.
+    //             sm.SaleMaster_DueAmount, 
+    //             (
+    //                 select ifnull(sum(cp.CPayment_amount), 0)
+    //                 from tbl_customer_payment cp 
+    //                 where cp.sale_id = ?
+    //                 and cp.CPayment_status = 'a'
+    //             ) as payment,
+    //             (select sm.SaleMaster_DueAmount - payment) as due
+
+    //         from tbl_salesmaster sm
+    //         where sm.SaleMaster_branchid = ?
+    //         $clauses
+    //         order by sm.SaleMaster_SlNo asc
+    //     ", [$data->SaleMaster_SlNo, $this->session->userdata('BRANCHid')])->result();
+
+    //     echo json_encode($singleDue);
+    // }
     public function getCustomerPayments(){
         $data = json_decode($this->input->raw_input_stream);
 
@@ -271,7 +285,7 @@ class Customer extends CI_Controller
 
                 $message = "Dear {$sendToName},\nThanks for your payment. Received amount is {$currency} {$paymentObj->CPayment_amount}. Current due is {$currency} {$currentDue}";
                 $recipient = $customerInfo->Customer_Mobile;
-                $this->sms->sendSms($recipient, $message);
+                // $this->sms->sendSms($recipient, $message);
             }
 
             $res = ['success'=>true, 'message'=>'Payment added successfully', 'paymentId'=>$paymentId];
